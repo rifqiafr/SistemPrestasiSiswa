@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Etalase Prestasi Siswa SMA - Galeri Kejuaraan & Portofolio Keunggulan')
+@section('title', 'Sistem Informasi Prestasi Siswa SMA - Galeri Kejuaraan & Portofolio Keunggulan')
 
 @section('content')
 <div class="relative overflow-hidden">
@@ -35,7 +35,7 @@
                 </p>
 
                 <!-- Search Bar Shortcut -->
-                <div class="max-w-xl mx-auto mb-6">
+                <div class="max-w-xl mx-auto mb-12">
                     <div class="relative flex items-center shadow-lg shadow-slate-200/60 rounded-2xl bg-white border border-slate-200 p-1.5 focus-within:ring-2 focus-within:ring-brand-500 focus-within:border-brand-500 transition-all">
                         <div class="pl-3.5 text-slate-400">
                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -55,35 +55,6 @@
                         >
                             Cari Prestasi
                         </button>
-                    </div>
-                </div>
-
-                <!-- Student Input CTA Banner -->
-                <div class="max-w-xl mx-auto mb-14">
-                    <div class="p-3 sm:p-3.5 rounded-2xl bg-white/90 backdrop-blur-md border border-brand-200/80 shadow-xs flex flex-col sm:flex-row items-center justify-between gap-3 text-left">
-                        <div class="flex items-center gap-3">
-                            <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-500 to-indigo-600 text-white flex items-center justify-center flex-shrink-0 shadow-xs">
-                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
-                                </svg>
-                            </div>
-                            <div>
-                                <h4 class="text-xs sm:text-sm font-bold text-slate-900 font-display">Punya Capaian atau Piagam Baru?</h4>
-                                <p class="text-[11px] text-slate-500">Siswa dapat masuk untuk menginput & melaporkan prestasi secara mandiri.</p>
-                            </div>
-                        </div>
-                        @auth
-                            <a href="{{ route('student.dashboard') }}" class="w-full sm:w-auto px-4 py-2 bg-brand-600 hover:bg-brand-700 text-white font-bold text-xs rounded-xl shadow-xs transition-colors whitespace-nowrap text-center">
-                                Buka Dashboard Siswa →
-                            </a>
-                        @else
-                            <a href="{{ route('login') }}" class="w-full sm:w-auto px-4 py-2 bg-brand-600 hover:bg-brand-700 text-white font-bold text-xs rounded-xl shadow-xs transition-colors whitespace-nowrap text-center flex items-center justify-center gap-1.5">
-                                <span>Masuk & Input Prestasi</span>
-                                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                                </svg>
-                            </a>
-                        @endauth
                     </div>
                 </div>
 

@@ -71,9 +71,6 @@
                     <a href="{{ route('home') }}#direktori" class="px-3.5 py-2 text-sm font-semibold text-slate-700 hover:text-brand-600 hover:bg-slate-100/80 rounded-lg transition-colors">
                         Katalog Prestasi
                     </a>
-                    <a href="{{ route('home') }}#statistik" class="px-3.5 py-2 text-sm font-semibold text-slate-700 hover:text-brand-600 hover:bg-slate-100/80 rounded-lg transition-colors">
-                        Statistik
-                    </a>
                 </nav>
 
                 <!-- Action Button -->
@@ -157,7 +154,7 @@
                         <span class="text-white text-lg font-bold font-display">SMA NEGERI UNGGULAN</span>
                     </div>
                     <p class="text-sm text-slate-400 max-w-md leading-relaxed">
-                        Pusat arsip digital dan publikasi resmi capaian talenta siswa SMA di bidang Akademik, Riset, Olahraga, dan Seni. Mendukung transparansi akreditasi sekolah dan apresiasi siswa berprestasi.
+                        Pusat arsip digital dan publikasi resmi capaian talenta siswa SMA di bidang Akademik dan Non-Akademik. Mendukung transparansi akreditasi sekolah dan apresiasi siswa berprestasi.
                     </p>
                     <div class="flex items-center gap-2 pt-2">
                         <span class="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
@@ -183,14 +180,11 @@
                 <!-- Col 3: Kontak & Info -->
                 <div>
                     <h3 class="text-sm font-semibold uppercase tracking-wider text-slate-200 mb-4 font-display">Layanan Kesiswaan</h3>
-                    <p class="text-sm leading-relaxed mb-3">
+                    <p class="text-sm leading-relaxed text-slate-400">
                         Jl. Pendidikan Raya No. 128, Kampus SMA Negeri Unggulan<br>
                         Email: kesiswaan@prestasi.sch.id<br>
                         Telp: (022) 728-1920
                     </p>
-                    <a href="{{ route('login') }}" class="inline-flex items-center text-xs font-medium text-brand-400 hover:text-brand-300">
-                        Login Operator & Super Admin &rarr;
-                    </a>
                 </div>
 
             </div>

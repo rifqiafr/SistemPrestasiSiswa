@@ -34,9 +34,7 @@ class DatabaseSeeder extends Seeder
 
         // 2. Categories
         $catAkademik = Category::create(['name' => 'Akademik', 'slug' => 'akademik', 'is_active' => true]);
-        $catOlahraga = Category::create(['name' => 'Olahraga', 'slug' => 'olahraga', 'is_active' => true]);
-        $catSeni = Category::create(['name' => 'Seni', 'slug' => 'seni', 'is_active' => true]);
-        $catRiset = Category::create(['name' => 'Riset', 'slug' => 'riset', 'is_active' => true]);
+        $catNonAkademik = Category::create(['name' => 'Non-Akademik', 'slug' => 'non-akademik', 'is_active' => true]);
 
         // 3. Students & Student User Accounts
         $studentData = [
@@ -89,7 +87,7 @@ class DatabaseSeeder extends Seeder
             ],
             [
                 'title' => 'Gold Medal World Young Inventor Exhibition (WYIE) 2026',
-                'category_id' => $catRiset->id,
+                'category_id' => $catNonAkademik->id,
                 'rank_grade' => 'Gold Medal & Special Award',
                 'competition_level' => 'Internasional',
                 'organizer' => 'MINDS (Malaysian Invention and Design Society)',
@@ -104,7 +102,7 @@ class DatabaseSeeder extends Seeder
             ],
             [
                 'title' => 'Juara 1 Lomba Karya Ilmiah Remaja (LKIR) Nasional 2026',
-                'category_id' => $catRiset->id,
+                'category_id' => $catNonAkademik->id,
                 'rank_grade' => 'Juara 1 Nasional (Medali Emas)',
                 'competition_level' => 'Nasional',
                 'organizer' => 'Badan Riset dan Inovasi Nasional (BRIN) & Kemdikbudristek',
@@ -134,7 +132,7 @@ class DatabaseSeeder extends Seeder
             ],
             [
                 'title' => 'Juara 1 FLS2N Menyanyi Solo Vokal Nasional 2026',
-                'category_id' => $catSeni->id,
+                'category_id' => $catNonAkademik->id,
                 'rank_grade' => 'Juara 1 Nasional',
                 'competition_level' => 'Nasional',
                 'organizer' => 'Balai Pengembangan Talenta Indonesia (BPTI)',
@@ -149,7 +147,7 @@ class DatabaseSeeder extends Seeder
             ],
             [
                 'title' => 'Medali Emas POPDA Bulutangkis Tunggal Putra 2026',
-                'category_id' => $catOlahraga->id,
+                'category_id' => $catNonAkademik->id,
                 'rank_grade' => 'Medali Emas',
                 'competition_level' => 'Provinsi',
                 'organizer' => 'Dinas Pemuda dan Olahraga Provinsi Jawa Barat',
@@ -179,7 +177,7 @@ class DatabaseSeeder extends Seeder
             ],
             [
                 'title' => 'Juara 1 Festival Band Pelajar Hardiknas Provinsi 2025',
-                'category_id' => $catSeni->id,
+                'category_id' => $catNonAkademik->id,
                 'rank_grade' => 'Juara 1 Provinsi',
                 'competition_level' => 'Provinsi',
                 'organizer' => 'Dinas Pendidikan Jawa Barat',
@@ -194,7 +192,7 @@ class DatabaseSeeder extends Seeder
             ],
             [
                 'title' => 'Medali Perak O2SN Renang Gaya Dada 100m Putra 2025',
-                'category_id' => $catOlahraga->id,
+                'category_id' => $catNonAkademik->id,
                 'rank_grade' => 'Medali Perak',
                 'competition_level' => 'Provinsi',
                 'organizer' => 'BPTI & Disdik Jabar',
@@ -209,7 +207,7 @@ class DatabaseSeeder extends Seeder
             ],
             [
                 'title' => 'Juara 1 Lomba Robotik Line Follower Microcontroller 2025',
-                'category_id' => $catRiset->id,
+                'category_id' => $catNonAkademik->id,
                 'rank_grade' => 'Juara 1 & Best Design',
                 'competition_level' => 'Provinsi',
                 'organizer' => 'Himpunan Mahasiswa Elektro ITB',
@@ -224,7 +222,7 @@ class DatabaseSeeder extends Seeder
             ],
             [
                 'title' => 'Juara 1 Lomba Cipta & Baca Puisi Tingkat Kota 2025',
-                'category_id' => $catSeni->id,
+                'category_id' => $catNonAkademik->id,
                 'rank_grade' => 'Juara 1 Kota',
                 'competition_level' => 'Kabupaten/Kota',
                 'organizer' => 'Dewan Kesenian Kota',
