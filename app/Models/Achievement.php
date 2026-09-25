@@ -45,7 +45,7 @@ class Achievement extends Model
     public function participants(): BelongsToMany
     {
         return $this->belongsToMany(Student::class, 'achievement_participants')
-                    ->withTimestamps();
+            ->withTimestamps();
     }
 
     public function media(): HasMany

@@ -43,12 +43,12 @@ class LandingPageController extends Controller
             $search = $request->input('search');
             $query->where(function ($q) use ($search) {
                 $q->where('title', 'like', "%{$search}%")
-                  ->orWhere('organizer', 'like', "%{$search}%")
-                  ->orWhere('rank_grade', 'like', "%{$search}%")
-                  ->orWhereHas('participants', function ($sq) use ($search) {
-                      $sq->where('full_name', 'like', "%{$search}%")
-                         ->orWhere('nisn', 'like', "%{$search}%");
-                  });
+                    ->orWhere('organizer', 'like', "%{$search}%")
+                    ->orWhere('rank_grade', 'like', "%{$search}%")
+                    ->orWhereHas('participants', function ($sq) use ($search) {
+                        $sq->where('full_name', 'like', "%{$search}%")
+                            ->orWhere('nisn', 'like', "%{$search}%");
+                    });
             });
         }
 
@@ -70,7 +70,7 @@ class LandingPageController extends Controller
         if ($request->ajax() || $request->wantsJson()) {
             return response()->json([
                 'achievements' => $achievements,
-                'count' => $achievements->count()
+                'count' => $achievements->count(),
             ]);
         }
 

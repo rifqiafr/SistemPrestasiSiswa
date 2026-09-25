@@ -2,14 +2,14 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
-use App\Models\Category;
-use App\Models\Student;
 use App\Models\Achievement;
 use App\Models\AchievementMedia;
+use App\Models\Category;
+use App\Models\Student;
+use App\Models\User;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 class DatabaseSeeder extends Seeder
 {
@@ -35,20 +35,40 @@ class DatabaseSeeder extends Seeder
         // 2. Categories
         $catAkademik = Category::create(['name' => 'Akademik', 'slug' => 'akademik', 'is_active' => true]);
         $catOlahraga = Category::create(['name' => 'Olahraga', 'slug' => 'olahraga', 'is_active' => true]);
-        $catSeni     = Category::create(['name' => 'Seni', 'slug' => 'seni', 'is_active' => true]);
-        $catRiset    = Category::create(['name' => 'Riset', 'slug' => 'riset', 'is_active' => true]);
+        $catSeni = Category::create(['name' => 'Seni', 'slug' => 'seni', 'is_active' => true]);
+        $catRiset = Category::create(['name' => 'Riset', 'slug' => 'riset', 'is_active' => true]);
 
-        // 3. Students
-        $students = [
-            's1' => Student::create(['nisn' => '0071283910', 'full_name' => 'Sarah Azzahra', 'class_grade' => 'XII MIPA 1', 'cohort_year' => 2026, 'gender' => 'P']),
-            's2' => Student::create(['nisn' => '0082910291', 'full_name' => 'Muhammad Rizky Pratama', 'class_grade' => 'XII MIPA 1', 'cohort_year' => 2026, 'gender' => 'L']),
-            's3' => Student::create(['nisn' => '0082910294', 'full_name' => 'Annisa Putri Ramadhani', 'class_grade' => 'XII MIPA 1', 'cohort_year' => 2026, 'gender' => 'P']),
-            's4' => Student::create(['nisn' => '0081729384', 'full_name' => 'Farhan Kevin Sanjaya', 'class_grade' => 'XI IPS 2', 'cohort_year' => 2027, 'gender' => 'L']),
-            's5' => Student::create(['nisn' => '0091827364', 'full_name' => 'Nabila Syakira', 'class_grade' => 'XI MIPA 3', 'cohort_year' => 2027, 'gender' => 'P']),
-            's6' => Student::create(['nisn' => '0092837461', 'full_name' => 'Dimas Arya Pamungkas', 'class_grade' => 'X-1', 'cohort_year' => 2028, 'gender' => 'L']),
-            's7' => Student::create(['nisn' => '0083948572', 'full_name' => 'Clara Stefani Putri', 'class_grade' => 'XII MIPA 2', 'cohort_year' => 2026, 'gender' => 'P']),
-            's8' => Student::create(['nisn' => '0073849102', 'full_name' => 'Rafi Ahmad Fauzan', 'class_grade' => 'XI MIPA 2', 'cohort_year' => 2027, 'gender' => 'L']),
+        // 3. Students & Student User Accounts
+        $studentData = [
+            's1' => ['nisn' => '0071283910', 'full_name' => 'Sarah Azzahra', 'email' => 'sarah@siswa.prestasi.sch.id', 'class_grade' => 'XII MIPA 1', 'cohort_year' => 2026, 'gender' => 'P'],
+            's2' => ['nisn' => '0082910291', 'full_name' => 'Muhammad Rizky Pratama', 'email' => 'rizky@siswa.prestasi.sch.id', 'class_grade' => 'XII MIPA 1', 'cohort_year' => 2026, 'gender' => 'L'],
+            's3' => ['nisn' => '0082910294', 'full_name' => 'Annisa Putri Ramadhani', 'email' => 'annisa@siswa.prestasi.sch.id', 'class_grade' => 'XII MIPA 1', 'cohort_year' => 2026, 'gender' => 'P'],
+            's4' => ['nisn' => '0081729384', 'full_name' => 'Farhan Kevin Sanjaya', 'email' => 'farhan@siswa.prestasi.sch.id', 'class_grade' => 'XI IPS 2', 'cohort_year' => 2027, 'gender' => 'L'],
+            's5' => ['nisn' => '0091827364', 'full_name' => 'Nabila Syakira', 'email' => 'nabila@siswa.prestasi.sch.id', 'class_grade' => 'XI MIPA 3', 'cohort_year' => 2027, 'gender' => 'P'],
+            's6' => ['nisn' => '0092837461', 'full_name' => 'Dimas Arya Pamungkas', 'email' => 'dimas@siswa.prestasi.sch.id', 'class_grade' => 'X-1', 'cohort_year' => 2028, 'gender' => 'L'],
+            's7' => ['nisn' => '0083948572', 'full_name' => 'Clara Stefani Putri', 'email' => 'clara@siswa.prestasi.sch.id', 'class_grade' => 'XII MIPA 2', 'cohort_year' => 2026, 'gender' => 'P'],
+            's8' => ['nisn' => '0073849102', 'full_name' => 'Rafi Ahmad Fauzan', 'email' => 'rafi@siswa.prestasi.sch.id', 'class_grade' => 'XI MIPA 2', 'cohort_year' => 2027, 'gender' => 'L'],
         ];
+
+        $students = [];
+        foreach ($studentData as $key => $data) {
+            $studentUser = User::create([
+                'name' => $data['full_name'],
+                'email' => $data['email'],
+                'password' => Hash::make('siswa123'),
+                'role' => 'siswa',
+                'last_login_at' => now()->subDays(1),
+            ]);
+
+            $students[$key] = Student::create([
+                'user_id' => $studentUser->id,
+                'nisn' => $data['nisn'],
+                'full_name' => $data['full_name'],
+                'class_grade' => $data['class_grade'],
+                'cohort_year' => $data['cohort_year'],
+                'gender' => $data['gender'],
+            ]);
+        }
 
         // 4. Achievements Data
         $items = [
@@ -65,7 +85,7 @@ class DatabaseSeeder extends Seeder
                 'status' => 'published',
                 'students' => [$students['s1']->id],
                 'photo' => 'https://images.unsplash.com/photo-1567427017947-545c5f8d16ad?auto=format&fit=crop&w=1200&q=80',
-                'certificate' => 'https://images.unsplash.com/photo-1589330694653-ded6df03f754?auto=format&fit=crop&w=1200&q=80'
+                'certificate' => 'https://images.unsplash.com/photo-1589330694653-ded6df03f754?auto=format&fit=crop&w=1200&q=80',
             ],
             [
                 'title' => 'Gold Medal World Young Inventor Exhibition (WYIE) 2026',
@@ -80,7 +100,7 @@ class DatabaseSeeder extends Seeder
                 'status' => 'published',
                 'students' => [$students['s2']->id, $students['s3']->id],
                 'photo' => 'https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=1200&q=80',
-                'certificate' => 'https://images.unsplash.com/photo-1607344645866-009c320c5ab8?auto=format&fit=crop&w=1200&q=80'
+                'certificate' => 'https://images.unsplash.com/photo-1607344645866-009c320c5ab8?auto=format&fit=crop&w=1200&q=80',
             ],
             [
                 'title' => 'Juara 1 Lomba Karya Ilmiah Remaja (LKIR) Nasional 2026',
@@ -95,7 +115,7 @@ class DatabaseSeeder extends Seeder
                 'status' => 'published',
                 'students' => [$students['s2']->id, $students['s3']->id],
                 'photo' => 'https://images.unsplash.com/photo-1581093458791-9f3c3900df4b?auto=format&fit=crop&w=1200&q=80',
-                'certificate' => 'https://images.unsplash.com/photo-1589330694653-ded6df03f754?auto=format&fit=crop&w=1200&q=80'
+                'certificate' => 'https://images.unsplash.com/photo-1589330694653-ded6df03f754?auto=format&fit=crop&w=1200&q=80',
             ],
             [
                 'title' => 'Medali Emas Olimpiade Sains Nasional (OSN) Fisika 2026',
@@ -110,7 +130,7 @@ class DatabaseSeeder extends Seeder
                 'status' => 'published',
                 'students' => [$students['s7']->id],
                 'photo' => 'https://images.unsplash.com/photo-1635070041078-e363dbe005cb?auto=format&fit=crop&w=1200&q=80',
-                'certificate' => 'https://images.unsplash.com/photo-1607344645866-009c320c5ab8?auto=format&fit=crop&w=1200&q=80'
+                'certificate' => 'https://images.unsplash.com/photo-1607344645866-009c320c5ab8?auto=format&fit=crop&w=1200&q=80',
             ],
             [
                 'title' => 'Juara 1 FLS2N Menyanyi Solo Vokal Nasional 2026',
@@ -125,7 +145,7 @@ class DatabaseSeeder extends Seeder
                 'status' => 'published',
                 'students' => [$students['s5']->id],
                 'photo' => 'https://images.unsplash.com/photo-1516280440614-37939bbacd81?auto=format&fit=crop&w=1200&q=80',
-                'certificate' => 'https://images.unsplash.com/photo-1589330694653-ded6df03f754?auto=format&fit=crop&w=1200&q=80'
+                'certificate' => 'https://images.unsplash.com/photo-1589330694653-ded6df03f754?auto=format&fit=crop&w=1200&q=80',
             ],
             [
                 'title' => 'Medali Emas POPDA Bulutangkis Tunggal Putra 2026',
@@ -140,7 +160,7 @@ class DatabaseSeeder extends Seeder
                 'status' => 'published',
                 'students' => [$students['s4']->id],
                 'photo' => 'https://images.unsplash.com/photo-1626224583764-f87db24ac4ea?auto=format&fit=crop&w=1200&q=80',
-                'certificate' => 'https://images.unsplash.com/photo-1607344645866-009c320c5ab8?auto=format&fit=crop&w=1200&q=80'
+                'certificate' => 'https://images.unsplash.com/photo-1607344645866-009c320c5ab8?auto=format&fit=crop&w=1200&q=80',
             ],
             [
                 'title' => 'Juara Umum National English Debate Championship (NEDC) 2025',
@@ -155,7 +175,7 @@ class DatabaseSeeder extends Seeder
                 'status' => 'published',
                 'students' => [$students['s8']->id, $students['s1']->id],
                 'photo' => 'https://images.unsplash.com/photo-1475721027785-f74eccf877e2?auto=format&fit=crop&w=1200&q=80',
-                'certificate' => 'https://images.unsplash.com/photo-1589330694653-ded6df03f754?auto=format&fit=crop&w=1200&q=80'
+                'certificate' => 'https://images.unsplash.com/photo-1589330694653-ded6df03f754?auto=format&fit=crop&w=1200&q=80',
             ],
             [
                 'title' => 'Juara 1 Festival Band Pelajar Hardiknas Provinsi 2025',
@@ -170,7 +190,7 @@ class DatabaseSeeder extends Seeder
                 'status' => 'published',
                 'students' => [$students['s4']->id, $students['s6']->id],
                 'photo' => 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=1200&q=80',
-                'certificate' => 'https://images.unsplash.com/photo-1607344645866-009c320c5ab8?auto=format&fit=crop&w=1200&q=80'
+                'certificate' => 'https://images.unsplash.com/photo-1607344645866-009c320c5ab8?auto=format&fit=crop&w=1200&q=80',
             ],
             [
                 'title' => 'Medali Perak O2SN Renang Gaya Dada 100m Putra 2025',
@@ -185,7 +205,7 @@ class DatabaseSeeder extends Seeder
                 'status' => 'published',
                 'students' => [$students['s6']->id],
                 'photo' => 'https://images.unsplash.com/photo-1530549387789-4c1017266635?auto=format&fit=crop&w=1200&q=80',
-                'certificate' => 'https://images.unsplash.com/photo-1589330694653-ded6df03f754?auto=format&fit=crop&w=1200&q=80'
+                'certificate' => 'https://images.unsplash.com/photo-1589330694653-ded6df03f754?auto=format&fit=crop&w=1200&q=80',
             ],
             [
                 'title' => 'Juara 1 Lomba Robotik Line Follower Microcontroller 2025',
@@ -200,7 +220,7 @@ class DatabaseSeeder extends Seeder
                 'status' => 'published',
                 'students' => [$students['s8']->id, $students['s2']->id],
                 'photo' => 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=1200&q=80',
-                'certificate' => 'https://images.unsplash.com/photo-1607344645866-009c320c5ab8?auto=format&fit=crop&w=1200&q=80'
+                'certificate' => 'https://images.unsplash.com/photo-1607344645866-009c320c5ab8?auto=format&fit=crop&w=1200&q=80',
             ],
             [
                 'title' => 'Juara 1 Lomba Cipta & Baca Puisi Tingkat Kota 2025',
@@ -215,7 +235,7 @@ class DatabaseSeeder extends Seeder
                 'status' => 'published',
                 'students' => [$students['s5']->id],
                 'photo' => 'https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&fit=crop&w=1200&q=80',
-                'certificate' => 'https://images.unsplash.com/photo-1589330694653-ded6df03f754?auto=format&fit=crop&w=1200&q=80'
+                'certificate' => 'https://images.unsplash.com/photo-1589330694653-ded6df03f754?auto=format&fit=crop&w=1200&q=80',
             ],
             [
                 'title' => 'Draft: Seleksi Calon Peserta Olimpiade Astronomi 2026',
@@ -230,14 +250,14 @@ class DatabaseSeeder extends Seeder
                 'status' => 'draft', // Draft internal
                 'students' => [$students['s7']->id],
                 'photo' => 'https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=1200&q=80',
-                'certificate' => 'https://images.unsplash.com/photo-1589330694653-ded6df03f754?auto=format&fit=crop&w=1200&q=80'
-            ]
+                'certificate' => 'https://images.unsplash.com/photo-1589330694653-ded6df03f754?auto=format&fit=crop&w=1200&q=80',
+            ],
         ];
 
         foreach ($items as $item) {
             $ach = Achievement::create([
                 'title' => $item['title'],
-                'slug' => Str::slug($item['title']) . '-' . rand(100, 999),
+                'slug' => Str::slug($item['title']).'-'.rand(100, 999),
                 'category_id' => $item['category_id'],
                 'rank_grade' => $item['rank_grade'],
                 'competition_level' => $item['competition_level'],
