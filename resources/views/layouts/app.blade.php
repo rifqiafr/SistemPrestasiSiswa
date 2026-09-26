@@ -39,52 +39,120 @@
 <body class="bg-slate-50 text-slate-800 antialiased selection:bg-brand-500 selection:text-white min-h-screen flex flex-col font-sans">
 
     <!-- Header / Navbar Sticky with Glassmorphism -->
-    <header class="sticky top-0 z-40 w-full transition-all duration-300 backdrop-blur-md bg-white/80 border-b border-slate-200/80 shadow-sm">
+    <header class="sticky top-0 z-40 w-full transition-all duration-300 backdrop-blur-md bg-white/95 border-b border-slate-200/90 shadow-sm">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-20">
                 
                 <!-- Brand / Logo -->
-                <a href="{{ route('home') }}" class="flex items-center gap-3.5 group">
-                    <div class="w-11 h-11 rounded-xl bg-gradient-to-tr from-brand-700 via-brand-600 to-brand-400 flex items-center justify-center text-white shadow-md shadow-brand-500/20 group-hover:scale-105 transition-transform duration-300">
+                <a href="{{ route('home') }}" class="flex items-center gap-3.5 group focus:outline-none focus:ring-2 focus:ring-brand-500 rounded-xl">
+                    <div class="w-11 h-11 rounded-xl bg-gradient-to-tr from-brand-800 via-brand-700 to-brand-500 flex items-center justify-center text-white shadow-md shadow-brand-500/20 group-hover:scale-105 transition-transform duration-300">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
                         </svg>
                     </div>
                     <div>
-                        <span class="block text-lg font-bold font-display tracking-tight text-slate-900 group-hover:text-brand-600 transition-colors">
+                        <span class="block text-base sm:text-lg font-bold font-display tracking-tight text-slate-900 group-hover:text-brand-600 transition-colors">
                             SMA NEGERI UNGGULAN
                         </span>
-                        <span class="block text-xs font-medium text-slate-500 tracking-wide uppercase">
-                            Sistem Prestasi Siswa
+                        <span class="block text-[11px] font-semibold text-slate-500 tracking-wider uppercase">
+                            Portal Profil & Prestasi Siswa
                         </span>
                     </div>
                 </a>
 
                 <!-- Desktop Navigation Links -->
-                <nav class="hidden md:flex items-center gap-1 lg:gap-2">
-                    <a href="{{ route('home') }}#hero" class="px-3.5 py-2 text-sm font-semibold text-slate-700 hover:text-brand-600 hover:bg-slate-100/80 rounded-lg transition-colors">
+                <nav class="hidden lg:flex items-center gap-1 xl:gap-2">
+                    <a href="{{ route('home') }}#hero" class="px-3 py-2 text-sm font-semibold text-slate-700 hover:text-brand-600 hover:bg-slate-100/80 rounded-xl transition-colors">
                         Beranda
                     </a>
-                    <a href="{{ route('home') }}#hall-of-fame" class="px-3.5 py-2 text-sm font-semibold text-slate-700 hover:text-brand-600 hover:bg-slate-100/80 rounded-lg transition-colors">
-                        Hall of Fame
+
+                    <!-- Dropdown Profil -->
+                    <div class="relative group">
+                        <button type="button" class="inline-flex items-center gap-1.5 px-3 py-2 text-sm font-semibold text-slate-700 hover:text-brand-600 hover:bg-slate-100/80 rounded-xl transition-colors focus:outline-none focus:ring-2 focus:ring-brand-500" aria-expanded="false">
+                            <span>Profil</span>
+                            <svg class="w-4 h-4 text-slate-400 group-hover:text-brand-600 group-hover:rotate-180 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                            </svg>
+                        </button>
+                        <div class="absolute left-0 mt-2 w-64 rounded-2xl bg-white border border-slate-200/90 shadow-xl py-2 opacity-0 translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-200 z-50">
+                            <a href="{{ route('home') }}#sambutan" class="block px-4 py-2.5 text-xs sm:text-sm text-slate-700 hover:bg-brand-50 hover:text-brand-700 transition-colors font-medium">
+                                Sambutan Kepala Sekolah
+                            </a>
+                            <a href="{{ route('home') }}#visi-misi" class="block px-4 py-2.5 text-xs sm:text-sm text-slate-700 hover:bg-brand-50 hover:text-brand-700 transition-colors font-medium">
+                                Visi & Misi Strategis
+                            </a>
+                            <a href="{{ route('home') }}#nilai-unggulan" class="block px-4 py-2.5 text-xs sm:text-sm text-slate-700 hover:bg-brand-50 hover:text-brand-700 transition-colors font-medium">
+                                Nilai & Karakter Siswa
+                            </a>
+                            <a href="{{ route('home') }}#profil-sejarah" class="block px-4 py-2.5 text-xs sm:text-sm text-slate-700 hover:bg-brand-50 hover:text-brand-700 transition-colors font-medium">
+                                Sejarah & Tenaga Pendidik
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Dropdown Prestasi -->
+                    <div class="relative group">
+                        <button type="button" class="inline-flex items-center gap-1.5 px-3 py-2 text-sm font-semibold text-slate-700 hover:text-brand-600 hover:bg-slate-100/80 rounded-xl transition-colors focus:outline-none focus:ring-2 focus:ring-brand-500" aria-expanded="false">
+                            <span>Prestasi</span>
+                            <svg class="w-4 h-4 text-slate-400 group-hover:text-brand-600 group-hover:rotate-180 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                            </svg>
+                        </button>
+                        <div class="absolute left-0 mt-2 w-64 rounded-2xl bg-white border border-slate-200/90 shadow-xl py-2 opacity-0 translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-200 z-50">
+                            <a href="{{ route('home') }}#hall-of-fame" class="block px-4 py-2.5 text-xs sm:text-sm text-slate-700 hover:bg-brand-50 hover:text-brand-700 transition-colors font-medium">
+                                Hall of Fame (Unggulan)
+                            </a>
+                            <a href="{{ route('home') }}#statistik" class="block px-4 py-2.5 text-xs sm:text-sm text-slate-700 hover:bg-brand-50 hover:text-brand-700 transition-colors font-medium">
+                                Statistik & Perolehan Medali
+                            </a>
+                            <a href="{{ route('home') }}#direktori" class="block px-4 py-2.5 text-xs sm:text-sm text-slate-700 hover:bg-brand-50 hover:text-brand-700 transition-colors font-medium">
+                                Katalog Direktori Lengkap
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Dropdown Berita & Agenda -->
+                    <div class="relative group">
+                        <button type="button" class="inline-flex items-center gap-1.5 px-3 py-2 text-sm font-semibold text-slate-700 hover:text-brand-600 hover:bg-slate-100/80 rounded-xl transition-colors focus:outline-none focus:ring-2 focus:ring-brand-500" aria-expanded="false">
+                            <span>Berita & Agenda</span>
+                            <svg class="w-4 h-4 text-slate-400 group-hover:text-brand-600 group-hover:rotate-180 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                            </svg>
+                        </button>
+                        <div class="absolute left-0 mt-2 w-64 rounded-2xl bg-white border border-slate-200/90 shadow-xl py-2 opacity-0 translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-200 z-50">
+                            <a href="{{ route('home') }}#berita-agenda" class="block px-4 py-2.5 text-xs sm:text-sm text-slate-700 hover:bg-brand-50 hover:text-brand-700 transition-colors font-medium">
+                                Berita Kegiatan Sekolah
+                            </a>
+                            <a href="{{ route('home') }}#berita-agenda" class="block px-4 py-2.5 text-xs sm:text-sm text-slate-700 hover:bg-brand-50 hover:text-brand-700 transition-colors font-medium">
+                                Pengumuman Resmi
+                            </a>
+                            <a href="{{ route('home') }}#kalender-akademik" class="block px-4 py-2.5 text-xs sm:text-sm text-slate-700 hover:bg-brand-50 hover:text-brand-700 transition-colors font-medium">
+                                Kalender Akademik
+                            </a>
+                        </div>
+                    </div>
+
+                    <a href="{{ route('home') }}#fasilitas" class="px-3 py-2 text-sm font-semibold text-slate-700 hover:text-brand-600 hover:bg-slate-100/80 rounded-xl transition-colors">
+                        Fasilitas
                     </a>
-                    <a href="{{ route('home') }}#direktori" class="px-3.5 py-2 text-sm font-semibold text-slate-700 hover:text-brand-600 hover:bg-slate-100/80 rounded-lg transition-colors">
-                        Katalog Prestasi
+
+                    <a href="{{ route('home') }}#kontak-ppdb" class="px-3 py-2 text-sm font-semibold text-slate-700 hover:text-brand-600 hover:bg-slate-100/80 rounded-xl transition-colors">
+                        Kontak & PPDB
                     </a>
                 </nav>
 
-                <!-- Action Button -->
+                <!-- Action Button & Mobile Menu Trigger -->
                 <div class="flex items-center gap-2 sm:gap-3">
                     @guest
-                        <a href="{{ route('login') }}" class="inline-flex items-center gap-1.5 px-3.5 py-2 text-xs sm:text-sm font-semibold text-slate-700 hover:text-brand-700 bg-slate-100 hover:bg-brand-50 border border-slate-200 rounded-xl transition-all shadow-sm">
+                        <a href="{{ route('login') }}" class="inline-flex items-center gap-1.5 px-3.5 py-2 text-xs sm:text-sm font-semibold text-slate-700 hover:text-brand-700 bg-slate-100 hover:bg-brand-50 border border-slate-200 rounded-xl transition-all shadow-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
                             <svg class="w-4 h-4 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1" />
                             </svg>
-                            <span>Login</span>
+                            <span>Masuk Portal</span>
                         </a>
                     @else
                         @if(Auth::user()->isSiswa() || Auth::user()->student)
-                            <a href="{{ route('student.dashboard') }}" class="inline-flex items-center gap-2 px-3.5 py-2 text-xs sm:text-sm font-semibold text-white bg-brand-600 hover:bg-brand-700 rounded-xl transition-all shadow-md shadow-brand-500/20">
+                            <a href="{{ route('student.dashboard') }}" class="inline-flex items-center gap-2 px-3.5 py-2 text-xs sm:text-sm font-semibold text-white bg-brand-600 hover:bg-brand-700 rounded-xl transition-all shadow-md shadow-brand-500/20 focus:outline-none focus:ring-2 focus:ring-brand-500">
                                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
                                 </svg>
@@ -99,15 +167,81 @@
 
                         <form action="{{ route('logout') }}" method="POST" class="inline">
                             @csrf
-                            <button type="submit" title="Keluar" class="p-2 text-slate-500 hover:text-rose-600 hover:bg-rose-50 rounded-xl border border-transparent hover:border-rose-100 transition-colors">
+                            <button type="submit" title="Keluar" class="p-2 text-slate-500 hover:text-rose-600 hover:bg-rose-50 rounded-xl border border-transparent hover:border-rose-100 transition-colors focus:outline-none focus:ring-2 focus:ring-rose-500">
                                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
                                 </svg>
                             </button>
                         </form>
                     @endguest
+
+                    <!-- Mobile Hamburger Button -->
+                    <button 
+                        type="button" 
+                        id="mobile-menu-btn"
+                        class="lg:hidden p-2.5 text-slate-700 hover:text-brand-600 hover:bg-slate-100 rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-500"
+                        aria-label="Buka menu navigasi"
+                        aria-expanded="false"
+                        onclick="toggleMobileMenu()"
+                    >
+                        <svg id="hamburger-icon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                        </svg>
+                        <svg id="close-icon" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                        </svg>
+                    </button>
                 </div>
 
+            </div>
+        </div>
+
+        <!-- Mobile Navigation Drawer -->
+        <div id="mobile-menu" class="hidden lg:hidden border-t border-slate-200 bg-white/95 backdrop-blur-md px-4 pt-3 pb-6 space-y-2 animate-fade-in shadow-xl">
+            <a href="{{ route('home') }}#hero" onclick="closeMobileMenu()" class="block px-3 py-2 text-sm font-semibold text-slate-800 hover:bg-brand-50 hover:text-brand-700 rounded-xl">
+                Beranda
+            </a>
+            <div class="pt-2 pb-1 border-t border-slate-100">
+                <span class="block px-3 text-[11px] font-bold text-slate-400 uppercase tracking-wider">Profil Sekolah</span>
+                <a href="{{ route('home') }}#sambutan" onclick="closeMobileMenu()" class="block px-3 py-1.5 text-sm text-slate-700 hover:text-brand-700">
+                    Sambutan Kepala Sekolah
+                </a>
+                <a href="{{ route('home') }}#visi-misi" onclick="closeMobileMenu()" class="block px-3 py-1.5 text-sm text-slate-700 hover:text-brand-700">
+                    Visi & Misi Strategis
+                </a>
+                <a href="{{ route('home') }}#nilai-unggulan" onclick="closeMobileMenu()" class="block px-3 py-1.5 text-sm text-slate-700 hover:text-brand-700">
+                    Nilai Karakter Siswa
+                </a>
+                <a href="{{ route('home') }}#profil-sejarah" onclick="closeMobileMenu()" class="block px-3 py-1.5 text-sm text-slate-700 hover:text-brand-700">
+                    Sejarah & Tenaga Pendidik
+                </a>
+            </div>
+            <div class="pt-2 pb-1 border-t border-slate-100">
+                <span class="block px-3 text-[11px] font-bold text-slate-400 uppercase tracking-wider">Katalog Prestasi</span>
+                <a href="{{ route('home') }}#hall-of-fame" onclick="closeMobileMenu()" class="block px-3 py-1.5 text-sm text-slate-700 hover:text-brand-700">
+                    Hall of Fame (Unggulan)
+                </a>
+                <a href="{{ route('home') }}#statistik" onclick="closeMobileMenu()" class="block px-3 py-1.5 text-sm text-slate-700 hover:text-brand-700">
+                    Rekapitulasi Medali
+                </a>
+                <a href="{{ route('home') }}#direktori" onclick="closeMobileMenu()" class="block px-3 py-1.5 text-sm text-slate-700 hover:text-brand-700">
+                    Direktori Prestasi Lengkap
+                </a>
+            </div>
+            <div class="pt-2 pb-1 border-t border-slate-100">
+                <span class="block px-3 text-[11px] font-bold text-slate-400 uppercase tracking-wider">Publikasi & Fasilitas</span>
+                <a href="{{ route('home') }}#berita-agenda" onclick="closeMobileMenu()" class="block px-3 py-1.5 text-sm text-slate-700 hover:text-brand-700">
+                    Berita Kegiatan & Pengumuman
+                </a>
+                <a href="{{ route('home') }}#kalender-akademik" onclick="closeMobileMenu()" class="block px-3 py-1.5 text-sm text-slate-700 hover:text-brand-700">
+                    Kalender Akademik
+                </a>
+                <a href="{{ route('home') }}#fasilitas" onclick="closeMobileMenu()" class="block px-3 py-1.5 text-sm text-slate-700 hover:text-brand-700">
+                    Galeri Fasilitas Sekolah
+                </a>
+                <a href="{{ route('home') }}#kontak-ppdb" onclick="closeMobileMenu()" class="block px-3 py-1.5 text-sm text-slate-700 hover:text-brand-700">
+                    Kontak & Informasi PPDB
+                </a>
             </div>
         </div>
     </header>
@@ -140,65 +274,156 @@
         @yield('content')
     </main>
 
-    <!-- Footer -->
-    <footer class="bg-slate-900 text-slate-400 border-t border-slate-800 pt-16 pb-12 mt-20">
+    <!-- Footer Lengkap & Peta Lokasi -->
+    <footer class="bg-slate-950 text-slate-300 border-t border-slate-800 pt-16 pb-12 mt-20">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-10 pb-12 border-b border-slate-800">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 pb-12 border-b border-slate-800/80">
                 
-                <!-- Col 1: Identity -->
-                <div class="md:col-span-2 space-y-4">
+                <!-- Col 1: Identity & Accreditation (4 cols) -->
+                <div class="lg:col-span-4 space-y-4">
                     <div class="flex items-center gap-3">
-                        <div class="w-9 h-9 rounded-lg bg-brand-500 flex items-center justify-center text-white font-bold">
+                        <div class="w-10 h-10 rounded-xl bg-brand-600 flex items-center justify-center text-white font-bold text-sm shadow-md shadow-brand-500/30">
                             SMA
                         </div>
-                        <span class="text-white text-lg font-bold font-display">SMA NEGERI UNGGULAN</span>
+                        <div>
+                            <span class="text-white text-lg font-bold font-display block leading-tight">SMA NEGERI UNGGULAN</span>
+                            <span class="text-xs text-slate-400">Pusat Keunggulan Sains & Karakter</span>
+                        </div>
                     </div>
-                    <p class="text-sm text-slate-400 max-w-md leading-relaxed">
-                        Pusat arsip digital dan publikasi resmi capaian talenta siswa SMA di bidang Akademik dan Non-Akademik. Mendukung transparansi akreditasi sekolah dan apresiasi siswa berprestasi.
+                    <p class="text-sm text-slate-400 leading-relaxed">
+                        Portal resmi profil sekolah dan sistem kurasi portofolio prestasi siswa. Berkomitmen mencetak generasi pembelajar yang berakhlak mulia, berprestasi global, dan adaptif terhadap perkembangan teknologi.
                     </p>
-                    <div class="flex items-center gap-2 pt-2">
-                        <span class="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
-                            Terakreditasi A (Unggul)
+                    <div class="flex flex-wrap items-center gap-2 pt-2">
+                        <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/30">
+                            Akreditasi A (Unggul: 98)
                         </span>
-                        <span class="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-semibold bg-brand-500/10 text-brand-400 border border-brand-500/20">
-                            Sekolah Penggerak
+                        <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-semibold bg-brand-500/10 text-brand-400 border border-brand-500/30">
+                            Sekolah Penggerak Mandiri
                         </span>
                     </div>
                 </div>
 
-                <!-- Col 2: Navigasi Cepat -->
-                <div>
-                    <h3 class="text-sm font-semibold uppercase tracking-wider text-slate-200 mb-4 font-display">Tautan Cepat</h3>
-                    <ul class="space-y-2.5 text-sm">
-                        <li><a href="{{ route('home') }}#hero" class="hover:text-white transition-colors">Beranda Utama</a></li>
-                        <li><a href="{{ route('home') }}#hall-of-fame" class="hover:text-white transition-colors">Hall of Fame (Unggulan)</a></li>
-                        <li><a href="{{ route('home') }}#direktori" class="hover:text-white transition-colors">Katalog & Filter Prestasi</a></li>
-                        <li><a href="{{ route('home') }}#statistik" class="hover:text-white transition-colors">Rekapitulasi Capaian</a></li>
+                <!-- Col 2: Navigasi Cepat (2 cols) -->
+                <div class="lg:col-span-2">
+                    <h3 class="text-sm font-semibold uppercase tracking-wider text-slate-100 mb-4 font-display">Profil & Navigasi</h3>
+                    <ul class="space-y-2.5 text-sm text-slate-400">
+                        <li><a href="{{ route('home') }}#hero" class="hover:text-white transition-colors">Beranda</a></li>
+                        <li><a href="{{ route('home') }}#sambutan" class="hover:text-white transition-colors">Sambutan Kepala Sekolah</a></li>
+                        <li><a href="{{ route('home') }}#visi-misi" class="hover:text-white transition-colors">Visi & Misi</a></li>
+                        <li><a href="{{ route('home') }}#nilai-unggulan" class="hover:text-white transition-colors">Nilai Karakter</a></li>
+                        <li><a href="{{ route('home') }}#profil-sejarah" class="hover:text-white transition-colors">Pendidik & Sejarah</a></li>
+                        <li><a href="{{ route('home') }}#fasilitas" class="hover:text-white transition-colors">Galeri Fasilitas</a></li>
                     </ul>
                 </div>
 
-                <!-- Col 3: Kontak & Info -->
-                <div>
-                    <h3 class="text-sm font-semibold uppercase tracking-wider text-slate-200 mb-4 font-display">Layanan Kesiswaan</h3>
-                    <p class="text-sm leading-relaxed text-slate-400">
-                        Jl. Pendidikan Raya No. 128, Kampus SMA Negeri Unggulan<br>
-                        Email: kesiswaan@prestasi.sch.id<br>
-                        Telp: (022) 728-1920
+                <!-- Col 3: Portal Prestasi & PPDB (2 cols) -->
+                <div class="lg:col-span-2">
+                    <h3 class="text-sm font-semibold uppercase tracking-wider text-slate-100 mb-4 font-display">Prestasi & PPDB</h3>
+                    <ul class="space-y-2.5 text-sm text-slate-400">
+                        <li><a href="{{ route('home') }}#hall-of-fame" class="hover:text-white transition-colors">Hall of Fame</a></li>
+                        <li><a href="{{ route('home') }}#statistik" class="hover:text-white transition-colors">Statistik Medali</a></li>
+                        <li><a href="{{ route('home') }}#direktori" class="hover:text-white transition-colors">Katalog Prestasi</a></li>
+                        <li><a href="{{ route('home') }}#berita-agenda" class="hover:text-white transition-colors">Berita & Pengumuman</a></li>
+                        <li><a href="{{ route('home') }}#kalender-akademik" class="hover:text-white transition-colors">Agenda Akademik</a></li>
+                        <li><a href="{{ route('home') }}#kontak-ppdb" class="hover:text-white transition-colors">Informasi PPDB</a></li>
+                    </ul>
+                </div>
+
+                <!-- Col 4: Peta Lokasi & Kontak Resmi (4 cols) -->
+                <div class="lg:col-span-4 space-y-3">
+                    <h3 class="text-sm font-semibold uppercase tracking-wider text-slate-100 mb-2 font-display">Lokasi & Kontak Humas</h3>
+                    
+                    <!-- Google Maps Embed Responsif -->
+                    <div class="w-full h-36 rounded-xl overflow-hidden border border-slate-800 shadow-md">
+                        <iframe 
+                            title="Peta Lokasi Kampus SMA Negeri Unggulan"
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d126748.40693574218!2d107.57311681289063!3d-6.9034443!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e68e6398252477f%3A0x146a1f93d3e815b2!2sBandung%2C%20Bandung%20City%2C%20West%20Java!5e0!3m2!1sen!2sid!4v1710000000000!5m2!1sen!2sid" 
+                            width="100%" 
+                            height="100%" 
+                            style="border:0;" 
+                            allowfullscreen="" 
+                            loading="lazy" 
+                            referrerpolicy="no-referrer-when-downgrade"
+                            class="grayscale opacity-85 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
+                        ></iframe>
+                    </div>
+
+                    <p class="text-xs text-slate-400 leading-relaxed">
+                        Jl. Pendidikan Raya No. 128, Kampus Terpadu SMA Negeri Unggulan, Kota Bandung, Jawa Barat 40132
                     </p>
+                    <div class="text-xs text-slate-400 space-y-1">
+                        <div class="flex items-center gap-2">
+                            <span class="text-slate-500">Email:</span>
+                            <a href="mailto:info@prestasi.sch.id" class="text-brand-400 hover:underline">info@prestasi.sch.id</a>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span class="text-slate-500">WhatsApp:</span>
+                            <a href="https://wa.me/6281234567890" target="_blank" rel="noopener noreferrer" class="text-emerald-400 hover:underline">+62 812-3456-7890 (Humas)</a>
+                        </div>
+                    </div>
+
+                    <!-- Media Sosial -->
+                    <div class="flex items-center gap-3 pt-2">
+                        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="w-8 h-8 rounded-lg bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-400 hover:text-white hover:border-brand-500 transition-colors" title="Instagram Resmi">
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                        </a>
+                        <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" class="w-8 h-8 rounded-lg bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-400 hover:text-white hover:border-red-500 transition-colors" title="YouTube Resmi">
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                        </a>
+                        <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="w-8 h-8 rounded-lg bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-400 hover:text-white hover:border-blue-500 transition-colors" title="Facebook Resmi">
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                        </a>
+                    </div>
                 </div>
 
             </div>
 
+            <!-- Bottom Copyright Bar -->
             <div class="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-4">
                 <p>&copy; {{ date('Y') }} SMA Negeri Unggulan. Seluruh Hak Cipta Dilindungi Undang-Undang.</p>
-                <div class="flex items-center gap-6">
-                    <span class="hover:text-slate-400 transition-colors">PRD v1.0 Production Ready</span>
+                <div class="flex items-center gap-4">
+                    <span>Sistem Informasi Prestasi Siswa Terpadu</span>
                     <span>•</span>
-                    <span class="hover:text-slate-400 transition-colors">Core Web Vitals Optimized</span>
+                    <a href="{{ route('home') }}#kontak-ppdb" class="hover:text-slate-300 transition-colors">Layanan Pengaduan & Informasi</a>
                 </div>
             </div>
         </div>
     </footer>
+
+    <script>
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const hamburger = document.getElementById('hamburger-icon');
+            const close = document.getElementById('close-icon');
+            const btn = document.getElementById('mobile-menu-btn');
+
+            const isHidden = menu.classList.contains('hidden');
+            if (isHidden) {
+                menu.classList.remove('hidden');
+                hamburger.classList.add('hidden');
+                close.classList.remove('hidden');
+                btn.setAttribute('aria-expanded', 'true');
+            } else {
+                menu.classList.add('hidden');
+                hamburger.classList.remove('hidden');
+                close.classList.add('hidden');
+                btn.setAttribute('aria-expanded', 'false');
+            }
+        }
+
+        function closeMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const hamburger = document.getElementById('hamburger-icon');
+            const close = document.getElementById('close-icon');
+            const btn = document.getElementById('mobile-menu-btn');
+            if (menu) {
+                menu.classList.add('hidden');
+                if (hamburger) hamburger.classList.remove('hidden');
+                if (close) close.classList.add('hidden');
+                if (btn) btn.setAttribute('aria-expanded', 'false');
+            }
+        }
+    </script>
 
     @stack('scripts')
 </body>
