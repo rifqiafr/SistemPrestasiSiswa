@@ -23,7 +23,7 @@
                     Visi Sekolah
                 </span>
                 <h3 class="text-xl sm:text-3xl lg:text-4xl font-bold font-display leading-relaxed sm:leading-snug">
-                    "Terwujudnya Generasi Unggul yang Beriman, Berbudi Pekerti Luhur, Berwawasan Global, serta Unggul dalam Penguasaan Sains dan Teknologi."
+                    "{{ $settings['vision'] ?? 'Terwujudnya Generasi Unggul yang Beriman, Berbudi Pekerti Luhur, Berwawasan Global, serta Unggul dalam Penguasaan Sains dan Teknologi.' }}"
                 </h3>
             </div>
         </div>
@@ -42,7 +42,7 @@
                     </div>
                     <h4 class="text-base font-bold text-slate-900 mb-2 font-display">Mutu Akademik & Riset</h4>
                     <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                        Menyelenggarakan pembelajaran saintifik dan proyek riset aplikatif untuk menghasilkan lulusan yang adaptif serta kompetitif secara akademik.
+                        {{ $settings['mission_1'] ?? 'Menyelenggarakan pembelajaran saintifik dan proyek riset aplikatif untuk menghasilkan lulusan yang adaptif serta kompetitif secara akademik.' }}
                     </p>
                 </div>
 
@@ -52,7 +52,7 @@
                     </div>
                     <h4 class="text-base font-bold text-slate-900 mb-2 font-display">Karakter & Budi Pekerti</h4>
                     <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                        Menginternalisasikan nilai-nilai keagamaan, toleransi, kedisiplinan, dan etika kesantunan dalam seluruh ekosistem warga sekolah.
+                        {{ $settings['mission_2'] ?? 'Menginternalisasikan nilai-nilai keagamaan, toleransi, kedisiplinan, dan etika kesantunan dalam seluruh ekosistem warga sekolah.' }}
                     </p>
                 </div>
 
@@ -62,7 +62,7 @@
                     </div>
                     <h4 class="text-base font-bold text-slate-900 mb-2 font-display">Talenta Seni & Olahraga</h4>
                     <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                        Mewadahi dan mengasah potensi minat bakat siswa di bidang seni budaya nusantara dan olahraga melalui kurasi kompetisi berjenjang.
+                        {{ $settings['mission_3'] ?? 'Mewadahi dan mengasah potensi minat bakat siswa di bidang seni budaya nusantara dan olahraga melalui kurasi kompetisi berjenjang.' }}
                     </p>
                 </div>
 
@@ -72,7 +72,7 @@
                     </div>
                     <h4 class="text-base font-bold text-slate-900 mb-2 font-display">Kemitraan & Jejaring Global</h4>
                     <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                        Membangun kolaborasi aktif bersama universitas terkemuka, lembaga riset nasional, dan institusi pendidikan internasional.
+                        {{ $settings['mission_4'] ?? 'Membangun kolaborasi aktif bersama universitas terkemuka, lembaga riset nasional, dan institusi pendidikan internasional.' }}
                     </p>
                 </div>
 
@@ -139,7 +139,7 @@
                         Dedikasi Mengabdi Sejak 1985
                     </h3>
                     <p class="text-xs sm:text-sm text-slate-600 leading-relaxed mb-4">
-                        Berdiri di atas lahan seluas 3,2 hektar, SMA Negeri Unggulan telah melalui transformasi panjang dari sekolah model rintisan hingga kini diakui sebagai Sekolah Penggerak Mandiri rujukan nasional. Ribuan alumni telah berkontribusi nyata di kancah nasional dan internasional.
+                        {{ $settings['history_summary'] ?? 'Berdiri sejak tahun 1985, SMA Negeri Unggulan telah membina lebih dari 35 angkatan alumni yang kini berkiprah sebagai akademisi, profesional industri, pejabat publik, dan pengusaha di berbagai belahan dunia.' }}
                     </p>
                     <div class="flex items-center gap-4 text-xs font-semibold text-brand-800">
                         <span>Koleksi 1.500+ Penghargaan</span>
@@ -150,7 +150,7 @@
                 <div class="bg-white p-6 rounded-2xl border border-brand-200/80 shadow-sm space-y-3">
                     <h4 class="text-sm font-bold text-slate-900 font-display">Tenaga Pendidik & Pembina Talenta</h4>
                     <p class="text-xs text-slate-600 leading-relaxed">
-                        Didukung oleh 64 tenaga pendidik berijazah Magister dan Sarjana dari universitas terkemuka, serta didampingi tim mentor olimpiade profesional untuk menjamin pendampingan intensif bagi setiap siswa.
+                        {{ $settings['faculty_summary'] ?? 'Didukung oleh 68 tenaga pendidik profesional berkualifikasi magister (S2) dan doktoral (S3), bersertifikasi pendidik nasional serta aktif sebagai pembina olimpiade sains.' }}
                     </p>
                     <div class="pt-2 flex items-center gap-2">
                         <span class="px-2.5 py-1 bg-brand-100 text-brand-800 text-[11px] font-semibold rounded-lg">Kualifikasi S2: 45%</span>

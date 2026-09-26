@@ -19,6 +19,10 @@ class AuthController extends Controller
     {
         if (Auth::check()) {
             $user = Auth::user();
+            if ($user->isOperator() || $user->isSuperAdmin()) {
+                return redirect()->route('admin.dashboard');
+            }
+
             if ($user->isSiswa() || $user->student) {
                 return redirect()->route('student.dashboard');
             }
@@ -94,6 +98,11 @@ class AuthController extends Controller
             /** @var User $user */
             $user = Auth::user();
             $user->update(['last_login_at' => now()]);
+
+            if ($user->isOperator() || $user->isSuperAdmin()) {
+                return redirect()->intended(route('admin.dashboard'))
+                    ->with('success', 'Selamat datang di Panel Operator, '.$user->name.'!');
+            }
 
             if ($user->isSiswa() || $user->student) {
                 return redirect()->intended(route('student.dashboard'))

@@ -151,7 +151,14 @@
                             <span>Masuk Portal</span>
                         </a>
                     @else
-                        @if(Auth::user()->isSiswa() || Auth::user()->student)
+                        @if(Auth::user()->isOperator() || Auth::user()->isSuperAdmin())
+                            <a href="{{ route('admin.dashboard') }}" class="inline-flex items-center gap-2 px-3.5 py-2 text-xs sm:text-sm font-semibold text-white bg-slate-900 hover:bg-slate-800 border border-slate-700 rounded-xl transition-all shadow-md focus:outline-none focus:ring-2 focus:ring-slate-500">
+                                <svg class="w-4 h-4 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                                </svg>
+                                <span>Panel Operator</span>
+                            </a>
+                        @elseif(Auth::user()->isSiswa() || Auth::user()->student)
                             <a href="{{ route('student.dashboard') }}" class="inline-flex items-center gap-2 px-3.5 py-2 text-xs sm:text-sm font-semibold text-white bg-brand-600 hover:bg-brand-700 rounded-xl transition-all shadow-md shadow-brand-500/20 focus:outline-none focus:ring-2 focus:ring-brand-500">
                                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
@@ -159,11 +166,6 @@
                                 <span>Dashboard Siswa</span>
                             </a>
                         @endif
-
-                        <div class="hidden sm:flex items-center gap-2 px-2.5 py-1.5 rounded-lg bg-slate-100 border border-slate-200 text-xs font-medium text-slate-700">
-                            <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
-                            <span class="max-w-[120px] truncate">{{ Auth::user()->name }}</span>
-                        </div>
 
                         <form action="{{ route('logout') }}" method="POST" class="inline">
                             @csrf
@@ -246,27 +248,69 @@
         </div>
     </header>
 
-    <!-- Flash Messages Container -->
+    <!-- Floating Toast Notification (Zero Layout Shift) -->
     @if(session('success') || session('error') || $errors->any())
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-4">
+        <div id="flash-message-container" class="fixed top-20 left-1/2 -translate-x-1/2 z-50 max-w-md w-[calc(100%-2rem)] transition-all duration-300 pointer-events-auto">
             @if(session('success'))
-                <div class="flex items-center gap-3 p-4 bg-emerald-50 border border-emerald-200 text-emerald-800 rounded-2xl shadow-sm animate-fade-in">
-                    <svg class="w-5 h-5 text-emerald-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                    </svg>
-                    <p class="text-sm font-medium">{{ session('success') }}</p>
+                <div class="flex items-center justify-between gap-3 px-4 py-3 bg-white/95 backdrop-blur-md border border-emerald-200/90 text-slate-800 rounded-2xl shadow-xl shadow-slate-950/10 ring-1 ring-emerald-500/20 animate-fade-in">
+                    <div class="flex items-center gap-3 min-w-0">
+                        <div class="w-8 h-8 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center flex-shrink-0 border border-emerald-100">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
+                            </svg>
+                        </div>
+                        <p class="text-xs sm:text-sm font-semibold text-slate-800 truncate">{{ session('success') }}</p>
+                    </div>
+                    <button 
+                        type="button" 
+                        onclick="dismissFlashMessage()" 
+                        class="p-1.5 text-slate-400 hover:text-slate-700 hover:bg-slate-100 rounded-xl transition-colors cursor-pointer flex-shrink-0" 
+                        aria-label="Tutup notifikasi"
+                    >
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                        </svg>
+                    </button>
                 </div>
             @endif
 
             @if(session('error'))
-                <div class="flex items-center gap-3 p-4 bg-rose-50 border border-rose-200 text-rose-800 rounded-2xl shadow-sm mt-2">
-                    <svg class="w-5 h-5 text-rose-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
-                    <p class="text-sm font-medium">{{ session('error') }}</p>
+                <div class="flex items-center justify-between gap-3 px-4 py-3 bg-white/95 backdrop-blur-md border border-rose-200/90 text-slate-800 rounded-2xl shadow-xl shadow-slate-950/10 ring-1 ring-rose-500/20 animate-fade-in mt-2">
+                    <div class="flex items-center gap-3 min-w-0">
+                        <div class="w-8 h-8 rounded-xl bg-rose-50 text-rose-600 flex items-center justify-center flex-shrink-0 border border-rose-100">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                        </div>
+                        <p class="text-xs sm:text-sm font-semibold text-slate-800 truncate">{{ session('error') }}</p>
+                    </div>
+                    <button 
+                        type="button" 
+                        onclick="dismissFlashMessage()" 
+                        class="p-1.5 text-slate-400 hover:text-slate-700 hover:bg-slate-100 rounded-xl transition-colors cursor-pointer flex-shrink-0" 
+                        aria-label="Tutup notifikasi"
+                    >
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                        </svg>
+                    </button>
                 </div>
             @endif
         </div>
+
+        <script>
+            function dismissFlashMessage() {
+                const el = document.getElementById('flash-message-container');
+                if (el) {
+                    el.style.opacity = '0';
+                    el.style.transform = 'translate(-50%, -15px)';
+                    setTimeout(() => el.remove(), 350);
+                }
+            }
+
+            // Notifikasi otomatis menghilang dalam 3.5 detik
+            setTimeout(dismissFlashMessage, 3500);
+        </script>
     @endif
 
     <!-- Main Content Area -->

@@ -24,13 +24,17 @@
                         <span>Capaian Internasional 2026</span>
                     </div>
                     <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold font-display tracking-tight leading-tight text-white mb-6">
-                        Menyemai Talenta Emas, <br>
-                        <span class="bg-gradient-to-r from-brand-300 via-sky-200 to-amber-300 bg-clip-text text-transparent">
-                            Mengukir Prestasi Dunia
-                        </span>
+                        @if(isset($settings['hero_tagline']))
+                            {{ $settings['hero_tagline'] }}
+                        @else
+                            Menyemai Talenta Emas, <br>
+                            <span class="bg-gradient-to-r from-brand-300 via-sky-200 to-amber-300 bg-clip-text text-transparent">
+                                Mengukir Prestasi Dunia
+                            </span>
+                        @endif
                     </h1>
                     <p class="text-base sm:text-lg lg:text-xl text-slate-300 leading-relaxed mb-8 max-w-2xl font-normal">
-                        Selamat datang di portal resmi SMA Negeri Unggulan. Wadah kurasi terpusat rekam jejak prestasi siswa, profil komitmen mutu pendidikan, dan transparansi akreditasi sekolah.
+                        {{ $settings['hero_subtagline'] ?? ('Selamat datang di portal resmi ' . ($settings['school_name'] ?? 'SMA Negeri Unggulan') . '. Wadah kurasi terpusat rekam jejak prestasi siswa, profil komitmen mutu pendidikan, dan transparansi akreditasi sekolah.') }}
                     </p>
                     <div class="flex flex-wrap items-center gap-4">
                         <a href="#hall-of-fame" class="px-6 py-3.5 bg-brand-600 hover:bg-brand-500 text-white font-semibold text-sm rounded-xl shadow-lg shadow-brand-600/30 transition-all hover:shadow-brand-600/50 flex items-center gap-2">

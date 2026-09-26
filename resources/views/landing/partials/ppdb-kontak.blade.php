@@ -8,16 +8,16 @@
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative z-10">
                 <div class="lg:col-span-8 space-y-4">
                     <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 text-amber-300 text-xs font-bold uppercase tracking-wider border border-white/20">
-                        <span>Penerimaan Peserta Didik Baru (PPDB)</span>
+                        <span>{{ $settings['ppdb_info_title'] ?? 'Penerimaan Peserta Didik Baru (PPDB)' }}</span>
                     </div>
                     <h2 class="text-2xl sm:text-4xl font-extrabold font-display leading-tight text-white">
                         Siap Menjadi Bagian dari Prestasi Emas Berikutnya?
                     </h2>
                     <p class="text-sm sm:text-base text-slate-300 leading-relaxed max-w-2xl font-normal">
-                        Pendaftaran siswa baru jalur prestasi kejuaraan, riset sains, talenta olahraga seni, maupun jalur zonasi dibuka secara transparan dan akuntabel. Dapatkan panduan lengkap dan konsultasikan persyaratan berkas Anda.
+                        {{ $settings['ppdb_info_desc'] ?? 'Pendaftaran siswa baru jalur prestasi kejuaraan, riset sains, talenta olahraga seni, maupun jalur zonasi dibuka secara transparan dan akuntabel. Dapatkan panduan lengkap dan konsultasikan persyaratan berkas Anda.' }}
                     </p>
                     <div class="flex flex-wrap items-center gap-3 pt-2">
-                        <a href="https://wa.me/6281234567890" target="_blank" rel="noopener noreferrer" class="px-6 py-3.5 bg-emerald-500 hover:bg-emerald-600 text-white font-semibold text-xs sm:text-sm rounded-xl transition-all shadow-md shadow-emerald-500/30 flex items-center gap-2">
+                        <a href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $settings['contact_whatsapp'] ?? '6281234567890') }}" target="_blank" rel="noopener noreferrer" class="px-6 py-3.5 bg-emerald-500 hover:bg-emerald-600 text-white font-semibold text-xs sm:text-sm rounded-xl transition-all shadow-md shadow-emerald-500/30 flex items-center gap-2">
                             <span>Hubungi Helpdesk PPDB (WhatsApp)</span>
                         </a>
                         <a href="#sambutan" class="px-5 py-3.5 bg-white/10 hover:bg-white/20 text-white font-semibold text-xs sm:text-sm rounded-xl border border-white/20 transition-all">
@@ -54,7 +54,8 @@
                 <div>
                     <h4 class="text-sm font-bold text-slate-900 font-display">Alamat Kampus</h4>
                     <p class="text-xs text-slate-600 mt-1 leading-relaxed">
-                        Jl. Pendidikan Raya No. 128, Kampus Terpadu SMA Negeri Unggulan, Kota Bandung 40132
+                        {{ $settings['contact_address'] ?? 'Jl. Pendidikan Unggulan No. 45' }}<br>
+                        {{ $settings['contact_city'] ?? 'Jawa Barat, Indonesia' }}
                     </p>
                 </div>
             </div>
@@ -66,8 +67,8 @@
                 <div>
                     <h4 class="text-sm font-bold text-slate-900 font-display">Telepon & WhatsApp</h4>
                     <p class="text-xs text-slate-600 mt-1 leading-relaxed">
-                        Telepon: (022) 728-1920<br>
-                        WhatsApp Humas: +62 812-3456-7890
+                        Telepon: {{ $settings['contact_phone'] ?? '(021) 7890-1234' }}<br>
+                        WhatsApp: {{ $settings['contact_whatsapp'] ?? '+62 812-3456-7890' }}
                     </p>
                 </div>
             </div>
@@ -77,10 +78,10 @@
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
                 </div>
                 <div>
-                    <h4 class="text-sm font-bold text-slate-900 font-display">Surat Elektronik & Jam Kerja</h4>
+                    <h4 class="text-sm font-bold text-slate-900 font-display">Surel & Jam Kerja</h4>
                     <p class="text-xs text-slate-600 mt-1 leading-relaxed">
-                        info@prestasi.sch.id<br>
-                        Senin - Jumat: 07.00 - 15.30 WIB
+                        {{ $settings['contact_email'] ?? 'info@prestasi.sch.id' }}<br>
+                        {{ $settings['contact_hours'] ?? 'Senin - Jumat: 07.00 - 16.00 WIB' }}
                     </p>
                 </div>
             </div>
