@@ -1,5 +1,5 @@
 <!-- 1. HERO SECTION (SINGLE BANNER) -->
-<section id="hero" class="relative bg-slate-950 text-white overflow-hidden">
+<section id="hero" class="relative bg-slate-950 text-white overflow-hidden scroll-mt-24">
     <!-- Subtle Glow Accent -->
     <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-96 hero-glow pointer-events-none opacity-40"></div>
 

@@ -7,6 +7,13 @@
     
     <title>@yield('title', 'Dashboard Siswa - Sistem Informasi Prestasi Siswa')</title>
 
+    <!-- Favicon & Icons -->
+    <link rel="icon" type="image/svg+xml" href="{{ asset('favicon.svg') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('favicon.png') }}">
+    <link rel="shortcut icon" href="{{ asset('favicon.ico') }}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('apple-touch-icon.png') }}">
+    <meta name="theme-color" content="#074b84">
+
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -27,11 +34,7 @@
                 <!-- Logo & School Brand -->
                 <div class="flex items-center gap-4">
                     <a href="{{ route('home') }}" class="flex items-center gap-3 group">
-                        <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-brand-700 via-brand-600 to-brand-500 flex items-center justify-center text-white shadow-xs group-hover:scale-105 transition-transform duration-200">
-                            <svg class="w-4 h-4 text-amber-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-                            </svg>
-                        </div>
+                        <img src="{{ asset('favicon.svg') }}" alt="Logo SMA" class="w-9 h-9 rounded-xl shadow-xs group-hover:scale-105 transition-transform duration-200 object-contain">
                         <div>
                             <span class="block text-sm sm:text-base font-bold font-display tracking-tight text-slate-900 group-hover:text-brand-600 transition-colors">
                                 SMA NEGERI UNGGULAN

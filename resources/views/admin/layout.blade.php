@@ -6,6 +6,13 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>@yield('title', 'Panel Operator') - SMA Negeri Unggulan</title>
 
+    <!-- Favicon & Icons -->
+    <link rel="icon" type="image/svg+xml" href="{{ asset('favicon.svg') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('favicon.png') }}">
+    <link rel="shortcut icon" href="{{ asset('favicon.ico') }}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('apple-touch-icon.png') }}">
+    <meta name="theme-color" content="#074b84">
+
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -27,11 +34,7 @@
             <!-- Sidebar Header / Branding -->
             <div class="h-20 flex items-center justify-between px-6 border-b border-slate-800/80 bg-slate-950/40">
                 <a href="{{ route('admin.dashboard') }}" class="flex items-center gap-3 group">
-                    <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-600 via-indigo-600 to-sky-400 flex items-center justify-center text-white shadow-md shadow-brand-500/20 group-hover:scale-105 transition-transform">
-                        <svg class="w-5 h-5 text-amber-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-                        </svg>
-                    </div>
+                    <img src="{{ asset('favicon.svg') }}" alt="Logo SMA" class="w-10 h-10 rounded-xl shadow-md shadow-brand-500/20 group-hover:scale-105 transition-transform object-contain">
                     <div>
                         <div class="text-sm font-bold font-display tracking-tight text-white group-hover:text-brand-300 transition-colors">
                             SMAN UNGGULAN
@@ -225,20 +228,20 @@
 
         <!-- Main Content Area -->
         <div class="flex-1 lg:pl-72 flex flex-col min-w-0">
-            <!-- Top Header Bar -->
-            <header class="h-20 bg-white border-b border-slate-200 sticky top-0 z-30 flex items-center justify-between px-4 sm:px-6 lg:px-8 shadow-xs">
+            <!-- Top Header Bar with Glassmorphic Blur -->
+            <header class="h-20 bg-white/90 backdrop-blur-md border-b border-slate-200/80 sticky top-0 z-30 flex items-center justify-between px-4 sm:px-6 lg:px-8 shadow-xs">
                 <!-- Left: Hamburger button & Breadcrumbs -->
                 <div class="flex items-center gap-3 sm:gap-4">
-                    <button type="button" onclick="toggleAdminSidebar()" class="lg:hidden p-2 text-slate-600 hover:text-slate-900 rounded-xl hover:bg-slate-100 focus:outline-none">
+                    <button type="button" onclick="toggleAdminSidebar()" class="lg:hidden p-2 text-slate-600 hover:text-slate-900 rounded-xl hover:bg-slate-100 focus:outline-none transition-colors">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
                         </svg>
                     </button>
 
                     <div>
-                        <div class="text-xs text-slate-400 flex items-center gap-1.5 font-medium">
-                            <a href="{{ route('admin.dashboard') }}" class="hover:text-brand-600 transition-colors">Operator</a>
-                            <span>/</span>
+                        <div class="text-[11px] text-slate-400 flex items-center gap-1.5 font-medium">
+                            <a href="{{ route('admin.dashboard') }}" class="hover:text-brand-600 transition-colors">Panel Operator</a>
+                            <span class="text-slate-300">/</span>
                             <span class="text-slate-600 font-semibold">@yield('page_title', 'Dashboard')</span>
                         </div>
                         <h1 class="text-base sm:text-lg font-bold font-display text-slate-900 tracking-tight leading-tight">
@@ -250,13 +253,13 @@
                 <!-- Right: Quick actions & School Indicator -->
                 <div class="flex items-center gap-2 sm:gap-3">
                     <!-- Academic Year Badge -->
-                    <div class="hidden md:flex items-center gap-2 px-3 py-1.5 rounded-xl bg-slate-100 text-xs font-semibold text-slate-700 border border-slate-200/80">
+                    <div class="hidden md:flex items-center gap-2 px-3 py-1.5 rounded-xl bg-slate-100/90 text-xs font-semibold text-slate-700 border border-slate-200/70">
                         <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
                         <span>T.A. 2026/2027 Ganjil</span>
                     </div>
 
                     <!-- Shortcut to create achievement -->
-                    <a href="{{ route('admin.achievement.create') }}" class="inline-flex items-center gap-2 px-3.5 py-2 text-xs sm:text-sm font-semibold text-white bg-brand-600 hover:bg-brand-700 rounded-xl transition-all shadow-md shadow-brand-500/20">
+                    <a href="{{ route('admin.achievement.create') }}" class="inline-flex items-center gap-2 px-3.5 py-2 text-xs sm:text-sm font-semibold text-white bg-brand-600 hover:bg-brand-700 active:scale-[0.98] rounded-xl transition-all shadow-sm hover:shadow-md shadow-brand-500/20">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
                         </svg>
@@ -264,10 +267,11 @@
                     </a>
 
                     <!-- Direct link to website -->
-                    <a href="{{ route('home') }}" target="_blank" title="Buka Website Sekolah" class="p-2 text-slate-500 hover:text-brand-600 hover:bg-slate-100 rounded-xl transition-colors">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <a href="{{ route('home') }}" target="_blank" title="Buka Portal Publik" class="inline-flex items-center gap-1.5 p-2 sm:px-3 sm:py-2 text-xs font-semibold text-slate-600 hover:text-brand-600 hover:bg-slate-100 rounded-xl transition-colors border border-slate-200/70">
+                        <svg class="w-4 h-4 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                         </svg>
+                        <span class="hidden md:inline">Lihat Web</span>
                     </a>
                 </div>
             </header>
@@ -293,7 +297,7 @@
                 </div>
             @endif
 
-            @if(session('error') || $errors->any())
+            @if(session('error') || (isset($errors) && $errors->any()))
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-5 w-full">
                     <div class="flex items-center justify-between p-4 bg-rose-50 border border-rose-200 text-rose-800 rounded-2xl shadow-xs">
                         <div class="flex items-center gap-3">
@@ -304,7 +308,7 @@
                             </div>
                             <div>
                                 <p class="text-sm font-bold">{{ session('error') ?? 'Terdapat kesalahan pada input formulir:' }}</p>
-                                @if($errors->any())
+                                @if(isset($errors) && $errors->any())
                                     <ul class="text-xs list-disc list-inside mt-1 space-y-0.5 text-rose-700">
                                         @foreach($errors->all() as $err)
                                             <li>{{ $err }}</li>

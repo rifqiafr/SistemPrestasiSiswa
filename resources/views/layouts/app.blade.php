@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="id" class="scroll-smooth">
+<html lang="id" class="scroll-smooth scroll-pt-20">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -26,6 +26,13 @@
     <meta property="twitter:description" content="@yield('meta_description', 'Katalog resmi publikasi prestasi dan capaian siswa SMA secara kredibel dan terverifikasi.')">
     <meta property="twitter:image" content="@yield('og_image', asset('build/assets/og-prestasi.jpg'))">
 
+    <!-- Favicon & Icons -->
+    <link rel="icon" type="image/svg+xml" href="{{ asset('favicon.svg') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('favicon.png') }}">
+    <link rel="shortcut icon" href="{{ asset('favicon.ico') }}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('apple-touch-icon.png') }}">
+    <meta name="theme-color" content="#074b84">
+
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -44,12 +51,8 @@
             <div class="flex items-center justify-between h-20">
                 
                 <!-- Brand / Logo -->
-                <a href="{{ route('home') }}" class="flex items-center gap-3.5 group focus:outline-none focus:ring-2 focus:ring-brand-500 rounded-xl">
-                    <div class="w-11 h-11 rounded-xl bg-gradient-to-tr from-brand-800 via-brand-700 to-brand-500 flex items-center justify-center text-white shadow-md shadow-brand-500/20 group-hover:scale-105 transition-transform duration-300">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-                        </svg>
-                    </div>
+                <a href="{{ route('home') }}" onclick="scrollToTop(event)" class="flex items-center gap-3.5 group focus:outline-none focus:ring-2 focus:ring-brand-500 rounded-xl">
+                    <img src="{{ asset('favicon.svg') }}" alt="Logo SMA" class="w-11 h-11 rounded-xl shadow-md shadow-brand-500/20 group-hover:scale-105 transition-transform duration-300 object-contain">
                     <div>
                         <span class="block text-base sm:text-lg font-bold font-display tracking-tight text-slate-900 group-hover:text-brand-600 transition-colors">
                             SMA NEGERI UNGGULAN
@@ -62,7 +65,7 @@
 
                 <!-- Desktop Navigation Links -->
                 <nav class="hidden lg:flex items-center gap-1 xl:gap-2">
-                    <a href="{{ route('home') }}#hero" class="px-3 py-2 text-sm font-semibold text-slate-700 hover:text-brand-600 hover:bg-slate-100/80 rounded-xl transition-colors">
+                    <a href="{{ route('home') }}" onclick="scrollToTop(event)" class="px-3 py-2 text-sm font-semibold text-slate-700 hover:text-brand-600 hover:bg-slate-100/80 rounded-xl transition-colors">
                         Beranda
                     </a>
 
@@ -204,7 +207,7 @@
 
         <!-- Mobile Navigation Drawer -->
         <div id="mobile-menu" class="hidden lg:hidden border-t border-slate-200 bg-white/95 backdrop-blur-md px-4 pt-3 pb-6 space-y-2 animate-fade-in shadow-xl">
-            <a href="{{ route('home') }}#hero" onclick="closeMobileMenu()" class="block px-3 py-2 text-sm font-semibold text-slate-800 hover:bg-brand-50 hover:text-brand-700 rounded-xl">
+            <a href="{{ route('home') }}" onclick="closeMobileMenu(); scrollToTop(event);" class="block px-3 py-2 text-sm font-semibold text-slate-800 hover:bg-brand-50 hover:text-brand-700 rounded-xl">
                 Beranda
             </a>
             <div class="pt-2 pb-1 border-t border-slate-100">
@@ -321,9 +324,7 @@
                 <!-- Col 1: Identity & Accreditation (4 cols) -->
                 <div class="lg:col-span-4 space-y-4">
                     <div class="flex items-center gap-3">
-                        <div class="w-10 h-10 rounded-xl bg-brand-600 flex items-center justify-center text-white font-bold text-sm shadow-md shadow-brand-500/30">
-                            SMA
-                        </div>
+                        <img src="{{ asset('favicon.svg') }}" alt="Logo SMA" class="w-10 h-10 rounded-xl shadow-md shadow-brand-500/30 object-contain">
                         <div>
                             <span class="text-white text-lg font-bold font-display block leading-tight">SMA NEGERI UNGGULAN</span>
                             <span class="text-xs text-slate-400">Pusat Keunggulan Sains & Karakter</span>
@@ -457,6 +458,22 @@
                 if (hamburger) hamburger.classList.remove('hidden');
                 if (close) close.classList.add('hidden');
                 if (btn) btn.setAttribute('aria-expanded', 'false');
+            }
+        }
+
+        function scrollToTop(e) {
+            const homeUrl = "{{ route('home') }}";
+            const currentPath = window.location.pathname;
+            const isHomePage = currentPath === '/' || 
+                               window.location.href.split('#')[0] === homeUrl ||
+                               window.location.href.split('?')[0].split('#')[0] === homeUrl;
+
+            if (isHomePage) {
+                if (e) e.preventDefault();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                if (window.location.hash) {
+                    history.pushState(null, null, currentPath);
+                }
             }
         }
 
