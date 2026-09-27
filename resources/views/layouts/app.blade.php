@@ -81,9 +81,6 @@
                             <a href="{{ route('home') }}#visi-misi" class="block px-4 py-2.5 text-xs sm:text-sm text-slate-700 hover:bg-brand-50 hover:text-brand-700 transition-colors font-medium">
                                 Visi & Misi Strategis
                             </a>
-                            <a href="{{ route('home') }}#nilai-unggulan" class="block px-4 py-2.5 text-xs sm:text-sm text-slate-700 hover:bg-brand-50 hover:text-brand-700 transition-colors font-medium">
-                                Nilai & Karakter Siswa
-                            </a>
                             <a href="{{ route('home') }}#profil-sejarah" class="block px-4 py-2.5 text-xs sm:text-sm text-slate-700 hover:bg-brand-50 hover:text-brand-700 transition-colors font-medium">
                                 Sejarah & Tenaga Pendidik
                             </a>
@@ -99,9 +96,6 @@
                             </svg>
                         </button>
                         <div class="absolute left-0 mt-2 w-64 rounded-2xl bg-white border border-slate-200/90 shadow-xl py-2 opacity-0 translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-200 z-50">
-                            <a href="{{ route('home') }}#hall-of-fame" class="block px-4 py-2.5 text-xs sm:text-sm text-slate-700 hover:bg-brand-50 hover:text-brand-700 transition-colors font-medium">
-                                Hall of Fame (Unggulan)
-                            </a>
                             <a href="{{ route('home') }}#statistik" class="block px-4 py-2.5 text-xs sm:text-sm text-slate-700 hover:bg-brand-50 hover:text-brand-700 transition-colors font-medium">
                                 Statistik & Perolehan Medali
                             </a>
@@ -126,9 +120,6 @@
                             <a href="{{ route('home') }}#berita-agenda" class="block px-4 py-2.5 text-xs sm:text-sm text-slate-700 hover:bg-brand-50 hover:text-brand-700 transition-colors font-medium">
                                 Pengumuman Resmi
                             </a>
-                            <a href="{{ route('home') }}#kalender-akademik" class="block px-4 py-2.5 text-xs sm:text-sm text-slate-700 hover:bg-brand-50 hover:text-brand-700 transition-colors font-medium">
-                                Kalender Akademik
-                            </a>
                         </div>
                     </div>
 
@@ -143,6 +134,19 @@
 
                 <!-- Action Button & Mobile Menu Trigger -->
                 <div class="flex items-center gap-2 sm:gap-3">
+                    <!-- Search Icon Button -->
+                    <button 
+                        type="button" 
+                        onclick="focusDirectorySearch()" 
+                        class="p-2 sm:p-2.5 text-slate-600 hover:text-brand-600 hover:bg-slate-100 rounded-xl transition-all focus:outline-none focus:ring-2 focus:ring-brand-500"
+                        title="Cari Prestasi Siswa"
+                        aria-label="Cari Prestasi"
+                    >
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                        </svg>
+                    </button>
+
                     @guest
                         <a href="{{ route('login') }}" class="inline-flex items-center gap-1.5 px-3.5 py-2 text-xs sm:text-sm font-semibold text-slate-700 hover:text-brand-700 bg-slate-100 hover:bg-brand-50 border border-slate-200 rounded-xl transition-all shadow-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
                             <svg class="w-4 h-4 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -211,18 +215,12 @@
                 <a href="{{ route('home') }}#visi-misi" onclick="closeMobileMenu()" class="block px-3 py-1.5 text-sm text-slate-700 hover:text-brand-700">
                     Visi & Misi Strategis
                 </a>
-                <a href="{{ route('home') }}#nilai-unggulan" onclick="closeMobileMenu()" class="block px-3 py-1.5 text-sm text-slate-700 hover:text-brand-700">
-                    Nilai Karakter Siswa
-                </a>
                 <a href="{{ route('home') }}#profil-sejarah" onclick="closeMobileMenu()" class="block px-3 py-1.5 text-sm text-slate-700 hover:text-brand-700">
                     Sejarah & Tenaga Pendidik
                 </a>
             </div>
             <div class="pt-2 pb-1 border-t border-slate-100">
                 <span class="block px-3 text-[11px] font-bold text-slate-400 uppercase tracking-wider">Katalog Prestasi</span>
-                <a href="{{ route('home') }}#hall-of-fame" onclick="closeMobileMenu()" class="block px-3 py-1.5 text-sm text-slate-700 hover:text-brand-700">
-                    Hall of Fame (Unggulan)
-                </a>
                 <a href="{{ route('home') }}#statistik" onclick="closeMobileMenu()" class="block px-3 py-1.5 text-sm text-slate-700 hover:text-brand-700">
                     Rekapitulasi Medali
                 </a>
@@ -234,9 +232,6 @@
                 <span class="block px-3 text-[11px] font-bold text-slate-400 uppercase tracking-wider">Publikasi & Fasilitas</span>
                 <a href="{{ route('home') }}#berita-agenda" onclick="closeMobileMenu()" class="block px-3 py-1.5 text-sm text-slate-700 hover:text-brand-700">
                     Berita Kegiatan & Pengumuman
-                </a>
-                <a href="{{ route('home') }}#kalender-akademik" onclick="closeMobileMenu()" class="block px-3 py-1.5 text-sm text-slate-700 hover:text-brand-700">
-                    Kalender Akademik
                 </a>
                 <a href="{{ route('home') }}#fasilitas" onclick="closeMobileMenu()" class="block px-3 py-1.5 text-sm text-slate-700 hover:text-brand-700">
                     Galeri Fasilitas Sekolah
@@ -354,7 +349,6 @@
                         <li><a href="{{ route('home') }}#hero" class="hover:text-white transition-colors">Beranda</a></li>
                         <li><a href="{{ route('home') }}#sambutan" class="hover:text-white transition-colors">Sambutan Kepala Sekolah</a></li>
                         <li><a href="{{ route('home') }}#visi-misi" class="hover:text-white transition-colors">Visi & Misi</a></li>
-                        <li><a href="{{ route('home') }}#nilai-unggulan" class="hover:text-white transition-colors">Nilai Karakter</a></li>
                         <li><a href="{{ route('home') }}#profil-sejarah" class="hover:text-white transition-colors">Pendidik & Sejarah</a></li>
                         <li><a href="{{ route('home') }}#fasilitas" class="hover:text-white transition-colors">Galeri Fasilitas</a></li>
                     </ul>
@@ -364,11 +358,9 @@
                 <div class="lg:col-span-2">
                     <h3 class="text-sm font-semibold uppercase tracking-wider text-slate-100 mb-4 font-display">Prestasi & PPDB</h3>
                     <ul class="space-y-2.5 text-sm text-slate-400">
-                        <li><a href="{{ route('home') }}#hall-of-fame" class="hover:text-white transition-colors">Hall of Fame</a></li>
                         <li><a href="{{ route('home') }}#statistik" class="hover:text-white transition-colors">Statistik Medali</a></li>
                         <li><a href="{{ route('home') }}#direktori" class="hover:text-white transition-colors">Katalog Prestasi</a></li>
                         <li><a href="{{ route('home') }}#berita-agenda" class="hover:text-white transition-colors">Berita & Pengumuman</a></li>
-                        <li><a href="{{ route('home') }}#kalender-akademik" class="hover:text-white transition-colors">Agenda Akademik</a></li>
                         <li><a href="{{ route('home') }}#kontak-ppdb" class="hover:text-white transition-colors">Informasi PPDB</a></li>
                     </ul>
                 </div>
@@ -465,6 +457,27 @@
                 if (hamburger) hamburger.classList.remove('hidden');
                 if (close) close.classList.add('hidden');
                 if (btn) btn.setAttribute('aria-expanded', 'false');
+            }
+        }
+
+        function focusDirectorySearch() {
+            closeMobileMenu();
+            if (typeof openNavSearchModal === 'function') {
+                openNavSearchModal();
+                return;
+            }
+            const searchModal = document.getElementById('nav-search-modal');
+            if (searchModal) {
+                searchModal.showModal();
+                const input = document.getElementById('nav-modal-search-input');
+                if (input) setTimeout(() => input.focus(), 50);
+                return;
+            }
+            const dirSection = document.getElementById('direktori');
+            if (dirSection) {
+                dirSection.scrollIntoView({ behavior: 'smooth' });
+            } else {
+                window.location.href = "{{ route('home') }}#direktori";
             }
         }
     </script>

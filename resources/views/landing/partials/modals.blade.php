@@ -146,3 +146,45 @@
         </div>
     </div>
 </dialog>
+
+<!-- 13. MODAL PENCARIAN CEPAT PRESTASI (NAVBAR SEARCH) -->
+<dialog id="nav-search-modal" class="p-0 rounded-3xl max-w-2xl w-full backdrop:bg-slate-950/70 backdrop:backdrop-blur-sm shadow-2xl border border-slate-200/90 overflow-hidden focus:outline-none">
+    <div class="bg-white flex flex-col max-h-[85vh]">
+        <!-- Search Input Bar -->
+        <div class="p-4 sm:p-5 border-b border-slate-100 flex items-center gap-3">
+            <div class="text-brand-600">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+            </div>
+            <input 
+                type="text" 
+                id="nav-modal-search-input" 
+                placeholder="Cari event lomba, nama siswa, NISN, atau pembimbing..." 
+                class="flex-1 bg-transparent text-sm sm:text-base text-slate-800 placeholder-slate-400 focus:outline-none"
+                oninput="handleNavModalSearch(this.value)"
+            >
+            <button 
+                type="button" 
+                onclick="closeNavSearchModal()" 
+                class="px-2.5 py-1 text-xs font-semibold text-slate-500 hover:text-slate-800 bg-slate-100 hover:bg-slate-200 rounded-lg transition-colors"
+                title="Tutup (ESC)"
+            >
+                ESC
+            </button>
+        </div>
+
+        <!-- Search Results List -->
+        <div id="nav-modal-results" class="p-4 overflow-y-auto space-y-2 flex-grow max-h-96">
+            <div class="text-center py-8 text-slate-400">
+                <svg class="w-8 h-8 mx-auto mb-2 opacity-40" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+                <p class="text-xs">Ketik kata kunci untuk mencari data prestasi siswa...</p>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="px-5 py-3 bg-slate-50 border-t border-slate-100 text-[11px] text-slate-500 flex items-center justify-between">
+            <span>Pencarian Cepat Data Prestasi</span>
+            <a href="#direktori" onclick="closeNavSearchModal()" class="text-brand-600 hover:text-brand-700 font-semibold hover:underline">Ke Direktori Lengkap &rarr;</a>
+        </div>
+    </div>
+</dialog>
+

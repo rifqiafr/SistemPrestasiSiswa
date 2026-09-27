@@ -1,65 +1,6 @@
 <script>
-    // 1. Hero Carousel Controller
-    let currentSlide = 0;
-    const totalSlides = 3;
-    let slideInterval = null;
-
-    function showSlide(index) {
-        currentSlide = (index + totalSlides) % totalSlides;
-        const slides = document.querySelectorAll('.hero-slide');
-        const dots = document.querySelectorAll('.carousel-dot');
-
-        slides.forEach((slide, i) => {
-            if (i === currentSlide) {
-                slide.classList.remove('opacity-0', 'pointer-events-none', 'z-0');
-                slide.classList.add('opacity-100', 'z-10');
-            } else {
-                slide.classList.remove('opacity-100', 'z-10');
-                slide.classList.add('opacity-0', 'pointer-events-none', 'z-0');
-            }
-        });
-
-        dots.forEach((dot, i) => {
-            if (i === currentSlide) {
-                dot.classList.remove('w-2', 'bg-white/40');
-                dot.classList.add('w-7', 'bg-brand-500');
-            } else {
-                dot.classList.remove('w-7', 'bg-brand-500');
-                dot.classList.add('w-2', 'bg-white/40');
-            }
-        });
-    }
-
-    function nextSlide() {
-        showSlide(currentSlide + 1);
-    }
-
-    function prevSlide() {
-        showSlide(currentSlide - 1);
-    }
-
-    function setSlide(i) {
-        showSlide(i);
-        restartSlideTimer();
-    }
-
-    function startSlideTimer() {
-        slideInterval = setInterval(nextSlide, 7000);
-    }
-
-    function restartSlideTimer() {
-        if (slideInterval) clearInterval(slideInterval);
-        startSlideTimer();
-    }
-
-    // 2. Animated Counter Ticker for Stats
+    // 1. Animated Counter Ticker for Stats
     document.addEventListener('DOMContentLoaded', () => {
-        startSlideTimer();
-        const heroSection = document.getElementById('hero');
-        if (heroSection) {
-            heroSection.addEventListener('mouseenter', () => clearInterval(slideInterval));
-            heroSection.addEventListener('mouseleave', () => startSlideTimer());
-        }
 
         const counters = document.querySelectorAll('.counter-ticker');
         counters.forEach(counter => {
@@ -80,6 +21,7 @@
         });
 
         initLiveFilters();
+        initDirectoryCarousel();
     });
 
     // 3. Tab Switcher for News vs Announcements
@@ -129,9 +71,130 @@
         });
     }
 
-    // 5. Client-Side Live Multi-Filtering & Instant Search
+    // 5. Client-Side Live Multi-Filtering & Instant Search with 2-Row 4-Col Carousel
     let selectedCategory = 'all';
     let currentModalSlug = '';
+    let dirCurrentSlide = 0;
+    let dirTotalSlides = 1;
+    const DIR_ITEMS_PER_SLIDE = 8;
+    let dirAllCards = [];
+
+    function initDirectoryCarousel() {
+        dirAllCards = Array.from(document.querySelectorAll('.achievement-card'));
+        const track = document.getElementById('dir-carousel-track');
+        if (track) {
+            const slides = track.querySelectorAll('.dir-slide');
+            dirTotalSlides = Math.max(1, slides.length);
+        }
+        dirUpdateSlide();
+
+        // Touch swipe support for mobile
+        const viewport = document.getElementById('dir-carousel-viewport');
+        if (viewport) {
+            let startX = 0;
+            let startY = 0;
+            viewport.addEventListener('touchstart', (e) => {
+                if (e.touches.length === 1) {
+                    startX = e.touches[0].clientX;
+                    startY = e.touches[0].clientY;
+                }
+            }, { passive: true });
+
+            viewport.addEventListener('touchend', (e) => {
+                if (e.changedTouches.length === 1) {
+                    const diffX = e.changedTouches[0].clientX - startX;
+                    const diffY = e.changedTouches[0].clientY - startY;
+                    if (Math.abs(diffX) > 40 && Math.abs(diffX) > Math.abs(diffY)) {
+                        if (diffX < 0) {
+                            dirNextSlide();
+                        } else {
+                            dirPrevSlide();
+                        }
+                    }
+                }
+            }, { passive: true });
+        }
+
+        window.addEventListener('resize', debounce(() => {
+            dirUpdateSlide();
+        }, 150));
+        window.addEventListener('load', () => {
+            dirUpdateSlide();
+        });
+    }
+
+    function dirGoToSlide(index) {
+        if (dirTotalSlides <= 0) return;
+        dirCurrentSlide = Math.max(0, Math.min(index, dirTotalSlides - 1));
+        dirUpdateSlide();
+    }
+
+    function dirNextSlide() {
+        if (dirTotalSlides <= 1) return;
+        dirCurrentSlide = (dirCurrentSlide + 1) % dirTotalSlides;
+        dirUpdateSlide();
+    }
+
+    function dirPrevSlide() {
+        if (dirTotalSlides <= 1) return;
+        dirCurrentSlide = (dirCurrentSlide - 1 + dirTotalSlides) % dirTotalSlides;
+        dirUpdateSlide();
+    }
+
+    function dirUpdateSlide() {
+        const track = document.getElementById('dir-carousel-track');
+        const viewport = document.getElementById('dir-carousel-viewport');
+        const slides = track ? track.querySelectorAll('.dir-slide') : [];
+
+        if (track) {
+            track.style.transform = `translateX(-${dirCurrentSlide * 100}%)`;
+        }
+
+        // Adjust viewport height dynamically to current slide
+        if (viewport && slides[dirCurrentSlide]) {
+            const currentSlideEl = slides[dirCurrentSlide];
+            requestAnimationFrame(() => {
+                viewport.style.height = `${currentSlideEl.scrollHeight}px`;
+            });
+        }
+
+        const pageSpan = document.getElementById('dir-current-page');
+        const totalSpan = document.getElementById('dir-total-pages');
+        if (pageSpan) pageSpan.innerText = dirCurrentSlide + 1;
+        if (totalSpan) totalSpan.innerText = dirTotalSlides;
+
+        // Update dots
+        const dotsContainer = document.getElementById('dir-carousel-dots');
+        if (dotsContainer) {
+            const existingDots = dotsContainer.querySelectorAll('.dir-dot');
+            if (existingDots.length !== dirTotalSlides) {
+                dotsContainer.innerHTML = '';
+                for (let i = 0; i < dirTotalSlides; i++) {
+                    const dot = document.createElement('button');
+                    dot.type = 'button';
+                    dot.setAttribute('aria-label', `Ke slide ${i + 1}`);
+                    dot.className = `dir-dot h-2 rounded-full transition-all duration-300 ${i === dirCurrentSlide ? 'w-6 bg-brand-600' : 'w-2 bg-slate-300 hover:bg-slate-400'}`;
+                    dot.onclick = () => dirGoToSlide(i);
+                    dotsContainer.appendChild(dot);
+                }
+            } else {
+                existingDots.forEach((dot, idx) => {
+                    if (idx === dirCurrentSlide) {
+                        dot.className = 'dir-dot h-2 rounded-full transition-all duration-300 w-6 bg-brand-600';
+                    } else {
+                        dot.className = 'dir-dot h-2 rounded-full transition-all duration-300 w-2 bg-slate-300 hover:bg-slate-400';
+                    }
+                });
+            }
+        }
+
+        // Disable/enable arrows
+        const hasMultiple = dirTotalSlides > 1;
+        ['dir-footer-prev', 'dir-footer-next'].forEach(id => {
+            const btn = document.getElementById(id);
+            if (btn) btn.disabled = !hasMultiple;
+        });
+    }
 
     function initLiveFilters() {
         const searchInput = document.getElementById('dir-search');
@@ -158,23 +221,27 @@
     }
 
     function applyFilters() {
-        const query = document.getElementById('dir-search').value.toLowerCase().trim();
-        const level = document.getElementById('filter-level').value;
-        const year  = document.getElementById('filter-year').value;
-        const cards = document.querySelectorAll('.achievement-card');
+        const query = document.getElementById('dir-search')?.value.toLowerCase().trim() || '';
+        const level = document.getElementById('filter-level')?.value || 'all';
+        const year  = document.getElementById('filter-year')?.value || 'all';
         const emptyState = document.getElementById('empty-state');
         const countSpan = document.getElementById('results-count');
+        const track = document.getElementById('dir-carousel-track');
+        const viewport = document.getElementById('dir-carousel-viewport');
+        const pagination = document.getElementById('dir-pagination-container');
 
-        let visibleCount = 0;
+        if (!dirAllCards.length) {
+            dirAllCards = Array.from(document.querySelectorAll('.achievement-card'));
+        }
 
-        cards.forEach(card => {
-            const cardTitle     = card.getAttribute('data-title');
-            const cardOrganizer = card.getAttribute('data-organizer');
-            const cardLevel     = card.getAttribute('data-level');
-            const cardCategory  = card.getAttribute('data-category');
-            const cardYear      = card.getAttribute('data-year');
-            const cardStudents  = card.getAttribute('data-students');
-            const cardMentor    = card.getAttribute('data-mentor');
+        const matchingCards = dirAllCards.filter(card => {
+            const cardTitle     = card.getAttribute('data-title') || '';
+            const cardOrganizer = card.getAttribute('data-organizer') || '';
+            const cardLevel     = card.getAttribute('data-level') || '';
+            const cardCategory  = card.getAttribute('data-category') || '';
+            const cardYear      = card.getAttribute('data-year') || '';
+            const cardStudents  = card.getAttribute('data-students') || '';
+            const cardMentor    = card.getAttribute('data-mentor') || '';
 
             const matchCat = (selectedCategory === 'all' || selectedCategory === cardCategory);
             const matchLevel = (level === 'all' || level === cardLevel);
@@ -185,22 +252,45 @@
                 cardStudents.includes(query) || 
                 cardMentor.includes(query);
 
-            if (matchCat && matchLevel && matchYear && matchQuery) {
-                card.style.display = '';
-                visibleCount++;
-            } else {
-                card.style.display = 'none';
-            }
+            return matchCat && matchLevel && matchYear && matchQuery;
         });
 
-        if (countSpan) countSpan.innerText = visibleCount;
-        if (emptyState) {
-            if (visibleCount === 0) {
-                emptyState.classList.remove('hidden');
-            } else {
-                emptyState.classList.add('hidden');
+        if (countSpan) countSpan.innerText = matchingCards.length;
+
+        if (matchingCards.length === 0) {
+            if (emptyState) emptyState.classList.remove('hidden');
+            if (viewport) viewport.classList.add('hidden');
+            if (pagination) pagination.classList.add('hidden');
+            dirTotalSlides = 0;
+            dirCurrentSlide = 0;
+            return;
+        }
+
+        if (emptyState) emptyState.classList.add('hidden');
+        if (viewport) viewport.classList.remove('hidden');
+        if (pagination) pagination.classList.remove('hidden');
+
+        // Re-chunk matching cards into slides of 8 (2 rows x 4 columns)
+        dirTotalSlides = Math.ceil(matchingCards.length / DIR_ITEMS_PER_SLIDE);
+        if (track) {
+            track.innerHTML = '';
+            for (let s = 0; s < dirTotalSlides; s++) {
+                const slideDiv = document.createElement('div');
+                slideDiv.className = 'dir-slide w-full flex-shrink-0 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6 p-1 content-start';
+                slideDiv.setAttribute('data-slide', s);
+
+                const chunk = matchingCards.slice(s * DIR_ITEMS_PER_SLIDE, (s + 1) * DIR_ITEMS_PER_SLIDE);
+                chunk.forEach(card => {
+                    card.style.display = '';
+                    slideDiv.appendChild(card);
+                });
+
+                track.appendChild(slideDiv);
             }
         }
+
+        dirCurrentSlide = 0;
+        dirUpdateSlide();
     }
 
     function resetFilters() {
@@ -252,6 +342,108 @@
                 modal.close();
             }
         });
+    }
+
+    const navSearchModal = document.getElementById('nav-search-modal');
+    if (navSearchModal) {
+        navSearchModal.addEventListener('click', (event) => {
+            const rect = navSearchModal.getBoundingClientRect();
+            const isInDialog = (
+                rect.top <= event.clientY &&
+                event.clientY <= rect.top + rect.height &&
+                rect.left <= event.clientX &&
+                event.clientX <= rect.left + rect.width
+            );
+            if (!isInDialog) {
+                navSearchModal.close();
+            }
+        });
+    }
+
+    function openNavSearchModal() {
+        const modal = document.getElementById('nav-search-modal');
+        if (modal) {
+            modal.showModal();
+            const input = document.getElementById('nav-modal-search-input');
+            if (input) {
+                input.value = '';
+                handleNavModalSearch('');
+                setTimeout(() => input.focus(), 60);
+            }
+        }
+    }
+
+    function closeNavSearchModal() {
+        const modal = document.getElementById('nav-search-modal');
+        if (modal) modal.close();
+    }
+
+    function handleNavModalSearch(query) {
+        const resultsEl = document.getElementById('nav-modal-results');
+        if (!resultsEl) return;
+        const q = (query || '').toLowerCase().trim();
+
+        if (!dirAllCards.length) {
+            dirAllCards = Array.from(document.querySelectorAll('.achievement-card'));
+        }
+
+        if (q.length < 2) {
+            resultsEl.innerHTML = `
+                <div class="text-center py-8 text-slate-400">
+                    <svg class="w-8 h-8 mx-auto mb-2 opacity-40" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+                    <p class="text-xs">Ketik minimal 2 karakter untuk mencari data prestasi siswa...</p>
+                </div>
+            `;
+            return;
+        }
+
+        const matches = dirAllCards.filter(card => {
+            const title = card.getAttribute('data-title') || '';
+            const org = card.getAttribute('data-organizer') || '';
+            const std = card.getAttribute('data-students') || '';
+            const mtr = card.getAttribute('data-mentor') || '';
+            return title.includes(q) || org.includes(q) || std.includes(q) || mtr.includes(q);
+        });
+
+        if (matches.length === 0) {
+            const safeQuery = q.replace(/</g, '&lt;').replace(/>/g, '&gt;');
+            resultsEl.innerHTML = `
+                <div class="text-center py-8 text-slate-400">
+                    <p class="text-xs">Tidak ditemukan prestasi yang cocok dengan "<strong>${safeQuery}</strong>".</p>
+                </div>
+            `;
+            return;
+        }
+
+        let html = '';
+        matches.slice(0, 10).forEach(card => {
+            const title = card.querySelector('h3')?.innerText.trim() || 'Prestasi Siswa';
+            const img = card.querySelector('img')?.src || '';
+            const level = card.getAttribute('data-level') || '';
+            const year = card.getAttribute('data-year') || '';
+            const btn = card.querySelector('button[onclick*="openDetailModal"]');
+            const onclickAttr = btn ? btn.getAttribute('onclick') : '';
+
+            html += `
+                <div class="p-3 rounded-2xl border border-slate-100 hover:border-brand-200 hover:bg-brand-50/30 transition-all flex items-center justify-between gap-3 group">
+                    <div class="flex items-center gap-3 min-w-0">
+                        <img src="${img}" alt="" class="w-12 h-12 rounded-xl object-cover border border-slate-200 shrink-0">
+                        <div class="min-w-0">
+                            <div class="flex items-center gap-2 mb-0.5">
+                                <span class="px-2 py-0.5 rounded text-[10px] font-bold text-white bg-brand-600">${level}</span>
+                                <span class="text-[11px] text-slate-400">${year}</span>
+                            </div>
+                            <h4 class="text-xs font-bold text-slate-900 truncate group-hover:text-brand-600">${title}</h4>
+                        </div>
+                    </div>
+                    <button type="button" onclick="closeNavSearchModal(); ${onclickAttr}" class="px-3 py-1.5 rounded-xl bg-slate-100 hover:bg-brand-600 hover:text-white text-slate-700 text-xs font-semibold shrink-0 transition-all">
+                        Lihat Detail
+                    </button>
+                </div>
+            `;
+        });
+
+        resultsEl.innerHTML = html;
     }
 
     function openDetailModal(item) {

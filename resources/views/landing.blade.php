@@ -9,7 +9,6 @@
     @include('landing.partials.sambutan')
     @include('landing.partials.visi-misi')
     @include('landing.partials.statistik')
-    @include('landing.partials.hall-of-fame')
     @include('landing.partials.direktori')
     @include('landing.partials.berita-agenda')
     @include('landing.partials.fasilitas')

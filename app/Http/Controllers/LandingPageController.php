@@ -25,13 +25,8 @@ class LandingPageController extends Controller
         $totalProvinsi = Achievement::published()->where('competition_level', 'Provinsi')->count();
         $totalKota = Achievement::published()->whereIn('competition_level', ['Kabupaten/Kota', 'Kota', 'Kabupaten'])->count();
 
-        // 2. Hall of Fame (Featured / Pinned achievements: 3 - 6 items)
-        $hallOfFame = Achievement::published()
-            ->featured()
-            ->with(['category', 'participants', 'coverMedia', 'media'])
-            ->orderBy('event_date', 'desc')
-            ->take(6)
-            ->get();
+        // 2. Hall of Fame (Deprecated/Removed)
+        $hallOfFame = collect();
 
         // 3. Categories for Filter Bar
         $categories = Category::where('is_active', true)->orderBy('name')->get();

@@ -107,45 +107,5 @@
             </div>
             @endforeach
         </div>
-
-        <!-- Kalender & Agenda Kegiatan Terdekat -->
-        <div id="kalender-akademik" class="bg-white rounded-3xl p-8 sm:p-10 border border-slate-200/90 shadow-sm">
-            <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-8 pb-6 border-b border-slate-100 gap-4">
-                <div>
-                    <span class="text-xs font-bold text-brand-600 uppercase tracking-wider block mb-1">Jadwal Mendatang</span>
-                    <h3 class="text-2xl font-bold font-display text-slate-900">Agenda Akademik & Kegiatan Siswa</h3>
-                </div>
-                <a href="#kontak-ppdb" class="text-xs font-bold text-brand-600 hover:text-brand-800 flex items-center gap-1">
-                    <span>Konfirmasi Jadwal Humas</span>
-                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
-                </a>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                @foreach($academicAgendas as $agenda)
-                <div class="p-5 rounded-2xl bg-slate-50 border border-slate-200/80 flex items-start gap-4">
-                    <div class="w-14 h-14 rounded-2xl bg-brand-600 text-white flex flex-col items-center justify-center shrink-0 shadow-sm">
-                        <span class="text-base font-extrabold leading-none">{{ $agenda['day'] }}</span>
-                        <span class="text-[10px] font-bold uppercase tracking-wider mt-0.5">{{ $agenda['month'] }}</span>
-                    </div>
-                    <div class="space-y-1">
-                        <div class="flex items-center gap-2">
-                            <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-100 text-emerald-800">
-                                {{ $agenda['status'] }}
-                            </span>
-                            <span class="text-xs text-slate-400">{{ $agenda['time'] }}</span>
-                        </div>
-                        <h4 class="text-sm sm:text-base font-bold text-slate-900 leading-snug">
-                            {{ $agenda['title'] }}
-                        </h4>
-                        <p class="text-xs text-slate-500">
-                            Lokasi: {{ $agenda['location'] }}
-                        </p>
-                    </div>
-                </div>
-                @endforeach
-            </div>
-        </div>
-
     </div>
 </section>

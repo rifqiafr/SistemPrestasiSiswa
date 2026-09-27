@@ -79,57 +79,6 @@
             </div>
         </div>
 
-        <!-- 4 Nilai Utama / Karakter Siswa -->
-        <div id="nilai-unggulan" class="bg-white rounded-3xl p-8 sm:p-10 border border-slate-200 shadow-sm">
-            <div class="max-w-2xl mb-8">
-                <span class="text-xs font-bold text-brand-600 uppercase tracking-wider block mb-1">Karakter Khas Pembinaan</span>
-                <h3 class="text-2xl font-bold font-display text-slate-900">4 Nilai Keunggulan Siswa</h3>
-                <p class="text-sm text-slate-500 mt-1">Nilai inti yang dihidupi setiap siswa dalam keseharian belajar dan berkarya.</p>
-            </div>
-
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                <div class="p-5 rounded-2xl bg-slate-50 border border-slate-200/80">
-                    <div class="w-10 h-10 rounded-lg bg-indigo-100 text-indigo-700 flex items-center justify-center font-bold text-sm mb-3">
-                        R
-                    </div>
-                    <h4 class="text-base font-bold text-slate-900 mb-1">Religius</h4>
-                    <p class="text-xs text-slate-600 leading-relaxed">
-                        Memiliki ketakwaan teguh, kejujuran dalam bersikap, dan toleransi sosial yang tinggi terhadap keberagaman bangsa.
-                    </p>
-                </div>
-
-                <div class="p-5 rounded-2xl bg-slate-50 border border-slate-200/80">
-                    <div class="w-10 h-10 rounded-lg bg-amber-100 text-amber-700 flex items-center justify-center font-bold text-sm mb-3">
-                        B
-                    </div>
-                    <h4 class="text-base font-bold text-slate-900 mb-1">Berprestasi</h4>
-                    <p class="text-xs text-slate-600 leading-relaxed">
-                        Memiliki dorongan berprestasi tinggi, tekun belajar, menjunjung sportivitas, dan siap berkompetisi secara sportif.
-                    </p>
-                </div>
-
-                <div class="p-5 rounded-2xl bg-slate-50 border border-slate-200/80">
-                    <div class="w-10 h-10 rounded-lg bg-emerald-100 text-emerald-700 flex items-center justify-center font-bold text-sm mb-3">
-                        L
-                    </div>
-                    <h4 class="text-base font-bold text-slate-900 mb-1">Berwawasan Lingkungan</h4>
-                    <p class="text-xs text-slate-600 leading-relaxed">
-                        Menerapkan gaya hidup ramah lingkungan, aktif dalam konservasi alam, dan menjaga keasrian kampus Adiwiyata.
-                    </p>
-                </div>
-
-                <div class="p-5 rounded-2xl bg-slate-50 border border-slate-200/80">
-                    <div class="w-10 h-10 rounded-lg bg-sky-100 text-sky-700 flex items-center justify-center font-bold text-sm mb-3">
-                        I
-                    </div>
-                    <h4 class="text-base font-bold text-slate-900 mb-1">Inovatif</h4>
-                    <p class="text-xs text-slate-600 leading-relaxed">
-                        Berpikir kritis dalam mencari solusi, kreatif memanfaatkan perangkat teknologi modern, dan siap menjadi agen perubahan.
-                    </p>
-                </div>
-            </div>
-        </div>
-
         <!-- Profil Singkat Sejarah & Pendidik -->
         <div id="profil-sejarah" class="mt-12 bg-brand-50/60 rounded-3xl p-8 sm:p-10 border border-brand-100">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
