@@ -48,16 +48,16 @@
     <!-- Header / Navbar Sticky with Glassmorphism -->
     <header class="sticky top-0 z-40 w-full transition-all duration-300 backdrop-blur-md bg-white/95 border-b border-slate-200/90 shadow-sm">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-20">
+            <div class="flex items-center justify-between h-16 sm:h-20">
                 
                 <!-- Brand / Logo -->
-                <a href="{{ route('home') }}" onclick="scrollToTop(event)" class="flex items-center gap-3.5 group focus:outline-none focus:ring-2 focus:ring-brand-500 rounded-xl">
-                    <img src="{{ asset('favicon.svg') }}" alt="Logo SMA" class="w-11 h-11 rounded-xl shadow-md shadow-brand-500/20 group-hover:scale-105 transition-transform duration-300 object-contain">
-                    <div>
-                        <span class="block text-base sm:text-lg font-bold font-display tracking-tight text-slate-900 group-hover:text-brand-600 transition-colors">
-                            SMA NEGERI UNGGULAN
+                <a href="{{ route('home') }}" onclick="scrollToTop(event)" class="flex items-center gap-2.5 sm:gap-3.5 group focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 rounded-xl min-w-0">
+                    <img src="{{ asset('favicon.svg') }}" alt="Logo SMA" class="w-9 h-9 sm:w-11 sm:h-11 rounded-xl shadow-md shadow-brand-500/20 group-hover:scale-105 transition-transform duration-300 object-contain flex-shrink-0">
+                    <div class="min-w-0">
+                        <span class="block text-sm sm:text-base lg:text-lg font-bold font-display tracking-tight text-slate-900 group-hover:text-brand-600 transition-colors whitespace-nowrap">
+                            SMAN UNGGULAN
                         </span>
-                        <span class="block text-[11px] font-semibold text-slate-500 tracking-wider uppercase">
+                        <span class="hidden sm:block text-[11px] font-semibold text-slate-500 tracking-wider uppercase truncate">
                             Portal Profil & Prestasi Siswa
                         </span>
                     </div>
@@ -70,59 +70,65 @@
                     </a>
 
                     <!-- Dropdown Profil -->
-                    <div class="relative group">
-                        <button type="button" class="inline-flex items-center gap-1.5 px-3 py-2 text-sm font-semibold text-slate-700 hover:text-brand-600 hover:bg-slate-100/80 rounded-xl transition-colors focus:outline-none focus:ring-2 focus:ring-brand-500" aria-expanded="false">
+                    <div class="relative nav-dropdown-item group">
+                        <button type="button" class="nav-dropdown-toggle inline-flex items-center gap-1.5 px-3 py-2 text-sm font-semibold text-slate-700 hover:text-brand-600 hover:bg-slate-100/80 rounded-xl transition-colors focus:outline-none focus:ring-2 focus:ring-brand-500" aria-expanded="false">
                             <span>Profil</span>
-                            <svg class="w-4 h-4 text-slate-400 group-hover:text-brand-600 group-hover:rotate-180 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg class="dropdown-arrow w-4 h-4 text-slate-400 group-hover:text-brand-600 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
                             </svg>
                         </button>
-                        <div class="absolute left-0 mt-2 w-64 rounded-2xl bg-white border border-slate-200/90 shadow-xl py-2 opacity-0 translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-200 z-50">
-                            <a href="{{ route('home') }}#sambutan" class="block px-4 py-2.5 text-xs sm:text-sm text-slate-700 hover:bg-brand-50 hover:text-brand-700 transition-colors font-medium">
-                                Sambutan Kepala Sekolah
-                            </a>
-                            <a href="{{ route('home') }}#visi-misi" class="block px-4 py-2.5 text-xs sm:text-sm text-slate-700 hover:bg-brand-50 hover:text-brand-700 transition-colors font-medium">
-                                Visi & Misi Strategis
-                            </a>
-                            <a href="{{ route('home') }}#profil-sejarah" class="block px-4 py-2.5 text-xs sm:text-sm text-slate-700 hover:bg-brand-50 hover:text-brand-700 transition-colors font-medium">
-                                Sejarah & Tenaga Pendidik
-                            </a>
+                        <div class="nav-dropdown-menu absolute left-0 top-full pt-1.5 w-64 z-50 opacity-0 translate-y-1.5 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-200 ease-out before:content-[''] before:absolute before:-top-3 before:left-0 before:w-full before:h-3">
+                            <div class="rounded-2xl bg-white border border-slate-200/90 shadow-xl py-2">
+                                <a href="{{ route('home') }}#sambutan" class="block px-4 py-2.5 text-xs sm:text-sm text-slate-700 hover:bg-brand-50 hover:text-brand-700 transition-colors font-medium">
+                                    Sambutan Kepala Sekolah
+                                </a>
+                                <a href="{{ route('home') }}#visi-misi" class="block px-4 py-2.5 text-xs sm:text-sm text-slate-700 hover:bg-brand-50 hover:text-brand-700 transition-colors font-medium">
+                                    Visi & Misi Strategis
+                                </a>
+                                <a href="{{ route('home') }}#profil-sejarah" class="block px-4 py-2.5 text-xs sm:text-sm text-slate-700 hover:bg-brand-50 hover:text-brand-700 transition-colors font-medium">
+                                    Sejarah & Tenaga Pendidik
+                                </a>
+                            </div>
                         </div>
                     </div>
 
                     <!-- Dropdown Prestasi -->
-                    <div class="relative group">
-                        <button type="button" class="inline-flex items-center gap-1.5 px-3 py-2 text-sm font-semibold text-slate-700 hover:text-brand-600 hover:bg-slate-100/80 rounded-xl transition-colors focus:outline-none focus:ring-2 focus:ring-brand-500" aria-expanded="false">
+                    <div class="relative nav-dropdown-item group">
+                        <button type="button" class="nav-dropdown-toggle inline-flex items-center gap-1.5 px-3 py-2 text-sm font-semibold text-slate-700 hover:text-brand-600 hover:bg-slate-100/80 rounded-xl transition-colors focus:outline-none focus:ring-2 focus:ring-brand-500" aria-expanded="false">
                             <span>Prestasi</span>
-                            <svg class="w-4 h-4 text-slate-400 group-hover:text-brand-600 group-hover:rotate-180 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg class="dropdown-arrow w-4 h-4 text-slate-400 group-hover:text-brand-600 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
                             </svg>
                         </button>
-                        <div class="absolute left-0 mt-2 w-64 rounded-2xl bg-white border border-slate-200/90 shadow-xl py-2 opacity-0 translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-200 z-50">
-                            <a href="{{ route('home') }}#statistik" class="block px-4 py-2.5 text-xs sm:text-sm text-slate-700 hover:bg-brand-50 hover:text-brand-700 transition-colors font-medium">
-                                Statistik & Perolehan Medali
-                            </a>
-                            <a href="{{ route('home') }}#direktori" class="block px-4 py-2.5 text-xs sm:text-sm text-slate-700 hover:bg-brand-50 hover:text-brand-700 transition-colors font-medium">
-                                Katalog Direktori Lengkap
-                            </a>
+                        <div class="nav-dropdown-menu absolute left-0 top-full pt-1.5 w-64 z-50 opacity-0 translate-y-1.5 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-200 ease-out before:content-[''] before:absolute before:-top-3 before:left-0 before:w-full before:h-3">
+                            <div class="rounded-2xl bg-white border border-slate-200/90 shadow-xl py-2">
+                                <a href="{{ route('home') }}#statistik" class="block px-4 py-2.5 text-xs sm:text-sm text-slate-700 hover:bg-brand-50 hover:text-brand-700 transition-colors font-medium">
+                                    Statistik & Perolehan Medali
+                                </a>
+                                <a href="{{ route('home') }}#direktori" class="block px-4 py-2.5 text-xs sm:text-sm text-slate-700 hover:bg-brand-50 hover:text-brand-700 transition-colors font-medium">
+                                    Katalog Direktori Lengkap
+                                </a>
+                            </div>
                         </div>
                     </div>
 
                     <!-- Dropdown Berita & Agenda -->
-                    <div class="relative group">
-                        <button type="button" class="inline-flex items-center gap-1.5 px-3 py-2 text-sm font-semibold text-slate-700 hover:text-brand-600 hover:bg-slate-100/80 rounded-xl transition-colors focus:outline-none focus:ring-2 focus:ring-brand-500" aria-expanded="false">
+                    <div class="relative nav-dropdown-item group">
+                        <button type="button" class="nav-dropdown-toggle inline-flex items-center gap-1.5 px-3 py-2 text-sm font-semibold text-slate-700 hover:text-brand-600 hover:bg-slate-100/80 rounded-xl transition-colors focus:outline-none focus:ring-2 focus:ring-brand-500" aria-expanded="false">
                             <span>Berita & Agenda</span>
-                            <svg class="w-4 h-4 text-slate-400 group-hover:text-brand-600 group-hover:rotate-180 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg class="dropdown-arrow w-4 h-4 text-slate-400 group-hover:text-brand-600 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
                             </svg>
                         </button>
-                        <div class="absolute left-0 mt-2 w-64 rounded-2xl bg-white border border-slate-200/90 shadow-xl py-2 opacity-0 translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-200 z-50">
-                            <a href="{{ route('home') }}#berita-agenda" class="block px-4 py-2.5 text-xs sm:text-sm text-slate-700 hover:bg-brand-50 hover:text-brand-700 transition-colors font-medium">
-                                Berita Kegiatan Sekolah
-                            </a>
-                            <a href="{{ route('home') }}#berita-agenda" class="block px-4 py-2.5 text-xs sm:text-sm text-slate-700 hover:bg-brand-50 hover:text-brand-700 transition-colors font-medium">
-                                Pengumuman Resmi
-                            </a>
+                        <div class="nav-dropdown-menu absolute left-0 top-full pt-1.5 w-64 z-50 opacity-0 translate-y-1.5 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-200 ease-out before:content-[''] before:absolute before:-top-3 before:left-0 before:w-full before:h-3">
+                            <div class="rounded-2xl bg-white border border-slate-200/90 shadow-xl py-2">
+                                <a href="{{ route('home') }}#berita-agenda" class="block px-4 py-2.5 text-xs sm:text-sm text-slate-700 hover:bg-brand-50 hover:text-brand-700 transition-colors font-medium">
+                                    Berita Kegiatan Sekolah
+                                </a>
+                                <a href="{{ route('home') }}#berita-agenda" class="block px-4 py-2.5 text-xs sm:text-sm text-slate-700 hover:bg-brand-50 hover:text-brand-700 transition-colors font-medium">
+                                    Pengumuman Resmi
+                                </a>
+                            </div>
                         </div>
                     </div>
 
@@ -136,12 +142,12 @@
                 </nav>
 
                 <!-- Action Button & Mobile Menu Trigger -->
-                <div class="flex items-center gap-2 sm:gap-3">
+                <div class="flex items-center gap-1 sm:gap-2.5 flex-shrink-0">
                     <!-- Search Icon Button -->
                     <button 
                         type="button" 
                         onclick="focusDirectorySearch()" 
-                        class="p-2 sm:p-2.5 text-slate-600 hover:text-brand-600 hover:bg-slate-100 rounded-xl transition-all focus:outline-none focus:ring-2 focus:ring-brand-500"
+                        class="p-2 sm:p-2.5 text-slate-600 hover:text-brand-600 hover:bg-slate-100 rounded-xl transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500"
                         title="Cari Prestasi Siswa"
                         aria-label="Cari Prestasi"
                     >
@@ -151,7 +157,7 @@
                     </button>
 
                     @guest
-                        <a href="{{ route('login') }}" class="inline-flex items-center gap-1.5 px-3.5 py-2 text-xs sm:text-sm font-semibold text-slate-700 hover:text-brand-700 bg-slate-100 hover:bg-brand-50 border border-slate-200 rounded-xl transition-all shadow-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                        <a href="{{ route('login') }}" class="hidden sm:inline-flex items-center gap-1.5 px-3.5 py-2 text-xs sm:text-sm font-semibold text-slate-700 hover:text-brand-700 bg-slate-100 hover:bg-brand-50 border border-slate-200 rounded-xl transition-all shadow-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500">
                             <svg class="w-4 h-4 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1" />
                             </svg>
@@ -159,14 +165,14 @@
                         </a>
                     @else
                         @if(Auth::user()->isOperator() || Auth::user()->isSuperAdmin())
-                            <a href="{{ route('admin.dashboard') }}" class="inline-flex items-center gap-2 px-3.5 py-2 text-xs sm:text-sm font-semibold text-white bg-slate-900 hover:bg-slate-800 border border-slate-700 rounded-xl transition-all shadow-md focus:outline-none focus:ring-2 focus:ring-slate-500">
+                            <a href="{{ route('admin.dashboard') }}" class="hidden sm:inline-flex items-center gap-2 px-3 py-1.5 sm:px-3.5 sm:py-2 text-xs sm:text-sm font-semibold text-white bg-slate-900 hover:bg-slate-800 border border-slate-700 rounded-xl transition-all shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-500">
                                 <svg class="w-4 h-4 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                                 </svg>
                                 <span>Panel Operator</span>
                             </a>
                         @elseif(Auth::user()->isSiswa() || Auth::user()->student)
-                            <a href="{{ route('student.dashboard') }}" class="inline-flex items-center gap-2 px-3.5 py-2 text-xs sm:text-sm font-semibold text-white bg-brand-600 hover:bg-brand-700 rounded-xl transition-all shadow-md shadow-brand-500/20 focus:outline-none focus:ring-2 focus:ring-brand-500">
+                            <a href="{{ route('student.dashboard') }}" class="hidden sm:inline-flex items-center gap-2 px-3 py-1.5 sm:px-3.5 sm:py-2 text-xs sm:text-sm font-semibold text-white bg-brand-600 hover:bg-brand-700 rounded-xl transition-all shadow-md shadow-brand-500/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500">
                                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
                                 </svg>
@@ -174,9 +180,9 @@
                             </a>
                         @endif
 
-                        <form action="{{ route('logout') }}" method="POST" class="inline">
+                        <form action="{{ route('logout') }}" method="POST" class="hidden sm:inline">
                             @csrf
-                            <button type="submit" title="Keluar" class="p-2 text-slate-500 hover:text-rose-600 hover:bg-rose-50 rounded-xl border border-transparent hover:border-rose-100 transition-colors focus:outline-none focus:ring-2 focus:ring-rose-500">
+                            <button type="submit" title="Keluar" class="p-2 text-slate-500 hover:text-rose-600 hover:bg-rose-50 rounded-xl border border-transparent hover:border-rose-100 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-rose-500">
                                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
                                 </svg>
@@ -188,7 +194,7 @@
                     <button 
                         type="button" 
                         id="mobile-menu-btn"
-                        class="lg:hidden p-2.5 text-slate-700 hover:text-brand-600 hover:bg-slate-100 rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-500"
+                        class="lg:hidden p-2 text-slate-700 hover:text-brand-600 hover:bg-slate-100 rounded-xl transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 active:bg-slate-200/80"
                         aria-label="Buka menu navigasi"
                         aria-expanded="false"
                         onclick="toggleMobileMenu()"
@@ -206,42 +212,121 @@
         </div>
 
         <!-- Mobile Navigation Drawer -->
-        <div id="mobile-menu" class="hidden lg:hidden border-t border-slate-200 bg-white/95 backdrop-blur-md px-4 pt-3 pb-6 space-y-2 animate-fade-in shadow-xl">
-            <a href="{{ route('home') }}" onclick="closeMobileMenu(); scrollToTop(event);" class="block px-3 py-2 text-sm font-semibold text-slate-800 hover:bg-brand-50 hover:text-brand-700 rounded-xl">
-                Beranda
-            </a>
-            <div class="pt-2 pb-1 border-t border-slate-100">
-                <span class="block px-3 text-[11px] font-bold text-slate-400 uppercase tracking-wider">Profil Sekolah</span>
-                <a href="{{ route('home') }}#sambutan" onclick="closeMobileMenu()" class="block px-3 py-1.5 text-sm text-slate-700 hover:text-brand-700">
-                    Sambutan Kepala Sekolah
+        <div id="mobile-menu" class="hidden lg:hidden border-t border-slate-200/90 bg-white/98 backdrop-blur-xl px-4 sm:px-6 pt-4 pb-6 space-y-3.5 shadow-2xl max-h-[calc(100vh-4rem)] overflow-y-auto">
+            <!-- Top Mobile Auth Card -->
+            @guest
+                <div class="p-3 bg-gradient-to-r from-brand-50 to-blue-50/60 rounded-2xl border border-brand-100/80 flex items-center justify-between gap-3">
+                    <div class="min-w-0">
+                        <div class="text-xs font-bold text-brand-900 font-display">Portal Siswa & Guru</div>
+                        <div class="text-[11px] text-brand-700/80">Akses dashboard prestasi resmi</div>
+                    </div>
+                    <a href="{{ route('login') }}" onclick="closeMobileMenu()" class="inline-flex items-center gap-1.5 px-3.5 py-2 text-xs font-bold text-white bg-brand-600 hover:bg-brand-700 active:scale-[0.98] rounded-xl transition-all shadow-sm shadow-brand-500/20 flex-shrink-0">
+                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1" />
+                        </svg>
+                        <span>Masuk Portal</span>
+                    </a>
+                </div>
+            @else
+                <div class="p-3 bg-slate-900 text-white rounded-2xl flex items-center justify-between gap-3 shadow-sm">
+                    <div class="min-w-0 flex items-center gap-2.5">
+                        <div class="w-8 h-8 rounded-lg bg-amber-400 text-slate-950 font-bold flex items-center justify-center text-xs flex-shrink-0">
+                            {{ strtoupper(substr(Auth::user()->name, 0, 2)) }}
+                        </div>
+                        <div class="min-w-0">
+                            <div class="text-xs font-bold truncate">{{ Auth::user()->name }}</div>
+                            <div class="text-[10px] text-amber-300 capitalize truncate">
+                                {{ Auth::user()->isOperator() ? 'Operator Kesiswaan' : 'Siswa SMAN Unggulan' }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-1.5 flex-shrink-0">
+                        @if(Auth::user()->isOperator() || Auth::user()->isSuperAdmin())
+                            <a href="{{ route('admin.dashboard') }}" class="px-2.5 py-1.5 text-xs font-bold bg-brand-600 hover:bg-brand-700 rounded-lg text-white transition-colors">
+                                Panel
+                            </a>
+                        @elseif(Auth::user()->isSiswa() || Auth::user()->student)
+                            <a href="{{ route('student.dashboard') }}" class="px-2.5 py-1.5 text-xs font-bold bg-brand-600 hover:bg-brand-700 rounded-lg text-white transition-colors">
+                                Panel
+                            </a>
+                        @endif
+                        <form action="{{ route('logout') }}" method="POST" class="inline">
+                            @csrf
+                            <button type="submit" title="Keluar" class="p-1.5 text-slate-400 hover:text-rose-400 transition-colors">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+                                </svg>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            @endguest
+
+            <!-- Quick Search Input inside Mobile Menu -->
+            <button 
+                type="button" 
+                onclick="focusDirectorySearch()" 
+                class="w-full flex items-center justify-between px-3.5 py-2.5 bg-slate-100/90 hover:bg-slate-100 text-slate-500 rounded-xl text-xs font-medium border border-slate-200/80 transition-colors"
+            >
+                <span class="flex items-center gap-2">
+                    <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                    </svg>
+                    <span>Cari data prestasi, nama siswa...</span>
+                </span>
+                <span class="px-2 py-0.5 text-[10px] font-bold bg-white text-slate-600 border border-slate-200 rounded-md">Cari</span>
+            </button>
+
+            <!-- Categorized Navigation Links -->
+            <div class="space-y-1 pt-1">
+                <a href="{{ route('home') }}" onclick="closeMobileMenu(); scrollToTop(event);" class="flex items-center gap-2.5 px-3 py-2 text-sm font-semibold text-slate-800 hover:bg-brand-50 hover:text-brand-700 rounded-xl transition-colors">
+                    <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+                    </svg>
+                    <span>Beranda Utama</span>
                 </a>
-                <a href="{{ route('home') }}#visi-misi" onclick="closeMobileMenu()" class="block px-3 py-1.5 text-sm text-slate-700 hover:text-brand-700">
-                    Visi & Misi Strategis
-                </a>
-                <a href="{{ route('home') }}#profil-sejarah" onclick="closeMobileMenu()" class="block px-3 py-1.5 text-sm text-slate-700 hover:text-brand-700">
-                    Sejarah & Tenaga Pendidik
-                </a>
-            </div>
-            <div class="pt-2 pb-1 border-t border-slate-100">
-                <span class="block px-3 text-[11px] font-bold text-slate-400 uppercase tracking-wider">Katalog Prestasi</span>
-                <a href="{{ route('home') }}#statistik" onclick="closeMobileMenu()" class="block px-3 py-1.5 text-sm text-slate-700 hover:text-brand-700">
-                    Rekapitulasi Medali
-                </a>
-                <a href="{{ route('home') }}#direktori" onclick="closeMobileMenu()" class="block px-3 py-1.5 text-sm text-slate-700 hover:text-brand-700">
-                    Direktori Prestasi Lengkap
-                </a>
-            </div>
-            <div class="pt-2 pb-1 border-t border-slate-100">
-                <span class="block px-3 text-[11px] font-bold text-slate-400 uppercase tracking-wider">Publikasi & Fasilitas</span>
-                <a href="{{ route('home') }}#berita-agenda" onclick="closeMobileMenu()" class="block px-3 py-1.5 text-sm text-slate-700 hover:text-brand-700">
-                    Berita Kegiatan & Pengumuman
-                </a>
-                <a href="{{ route('home') }}#fasilitas" onclick="closeMobileMenu()" class="block px-3 py-1.5 text-sm text-slate-700 hover:text-brand-700">
-                    Galeri Fasilitas Sekolah
-                </a>
-                <a href="{{ route('home') }}#kontak-ppdb" onclick="closeMobileMenu()" class="block px-3 py-1.5 text-sm text-slate-700 hover:text-brand-700">
-                    Kontak & Informasi PPDB
-                </a>
+
+                <div class="pt-2 border-t border-slate-100">
+                    <div class="px-3 pb-1 text-[10px] font-bold text-slate-400 uppercase tracking-wider">Profil Sekolah</div>
+                    <div class="space-y-0.5">
+                        <a href="{{ route('home') }}#sambutan" onclick="closeMobileMenu()" class="block px-3 py-1.5 text-xs sm:text-sm font-medium text-slate-700 hover:text-brand-600 hover:bg-slate-50 rounded-lg transition-colors">
+                            Sambutan Kepala Sekolah
+                        </a>
+                        <a href="{{ route('home') }}#visi-misi" onclick="closeMobileMenu()" class="block px-3 py-1.5 text-xs sm:text-sm font-medium text-slate-700 hover:text-brand-600 hover:bg-slate-50 rounded-lg transition-colors">
+                            Visi & Misi Strategis
+                        </a>
+                        <a href="{{ route('home') }}#profil-sejarah" onclick="closeMobileMenu()" class="block px-3 py-1.5 text-xs sm:text-sm font-medium text-slate-700 hover:text-brand-600 hover:bg-slate-50 rounded-lg transition-colors">
+                            Sejarah & Tenaga Pendidik
+                        </a>
+                    </div>
+                </div>
+
+                <div class="pt-2 border-t border-slate-100">
+                    <div class="px-3 pb-1 text-[10px] font-bold text-slate-400 uppercase tracking-wider">Katalog Prestasi</div>
+                    <div class="space-y-0.5">
+                        <a href="{{ route('home') }}#statistik" onclick="closeMobileMenu()" class="block px-3 py-1.5 text-xs sm:text-sm font-medium text-slate-700 hover:text-brand-600 hover:bg-slate-50 rounded-lg transition-colors">
+                            Rekapitulasi Medali & Statistik
+                        </a>
+                        <a href="{{ route('home') }}#direktori" onclick="closeMobileMenu()" class="block px-3 py-1.5 text-xs sm:text-sm font-medium text-slate-700 hover:text-brand-600 hover:bg-slate-50 rounded-lg transition-colors">
+                            Direktori Prestasi Siswa Terpadu
+                        </a>
+                    </div>
+                </div>
+
+                <div class="pt-2 border-t border-slate-100">
+                    <div class="px-3 pb-1 text-[10px] font-bold text-slate-400 uppercase tracking-wider">Informasi & Fasilitas</div>
+                    <div class="space-y-0.5">
+                        <a href="{{ route('home') }}#berita-agenda" onclick="closeMobileMenu()" class="block px-3 py-1.5 text-xs sm:text-sm font-medium text-slate-700 hover:text-brand-600 hover:bg-slate-50 rounded-lg transition-colors">
+                            Berita Kegiatan & Pengumuman
+                        </a>
+                        <a href="{{ route('home') }}#fasilitas" onclick="closeMobileMenu()" class="block px-3 py-1.5 text-xs sm:text-sm font-medium text-slate-700 hover:text-brand-600 hover:bg-slate-50 rounded-lg transition-colors">
+                            Galeri Fasilitas Sekolah
+                        </a>
+                        <a href="{{ route('home') }}#kontak-ppdb" onclick="closeMobileMenu()" class="block px-3 py-1.5 text-xs sm:text-sm font-medium text-slate-700 hover:text-brand-600 hover:bg-slate-50 rounded-lg transition-colors">
+                            Kontak & Layanan PPDB
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
     </header>
@@ -497,7 +582,106 @@
                 window.location.href = "{{ route('home') }}#direktori";
             }
         }
+
+        // Desktop Navbar Dropdown handling with graceful timeout and click toggle
+        document.addEventListener('DOMContentLoaded', function () {
+            const dropdownItems = document.querySelectorAll('.nav-dropdown-item');
+            
+            dropdownItems.forEach(item => {
+                const toggleBtn = item.querySelector('.nav-dropdown-toggle');
+                const menu = item.querySelector('.nav-dropdown-menu');
+                const arrow = item.querySelector('.dropdown-arrow');
+                let closeTimer = null;
+
+                function openMenu() {
+                    if (closeTimer) {
+                        clearTimeout(closeTimer);
+                        closeTimer = null;
+                    }
+                    dropdownItems.forEach(other => {
+                        if (other !== item) {
+                            other.classList.remove('is-open');
+                            const otherMenu = other.querySelector('.nav-dropdown-menu');
+                            const otherBtn = other.querySelector('.nav-dropdown-toggle');
+                            const otherArrow = other.querySelector('.dropdown-arrow');
+                            if (otherMenu) otherMenu.classList.remove('menu-active');
+                            if (otherBtn) otherBtn.setAttribute('aria-expanded', 'false');
+                            if (otherArrow) otherArrow.classList.remove('rotate-180');
+                        }
+                    });
+
+                    item.classList.add('is-open');
+                    if (menu) menu.classList.add('menu-active');
+                    if (toggleBtn) toggleBtn.setAttribute('aria-expanded', 'true');
+                    if (arrow) arrow.classList.add('rotate-180');
+                }
+
+                function closeMenu(immediate = false) {
+                    if (closeTimer) clearTimeout(closeTimer);
+                    if (immediate) {
+                        item.classList.remove('is-open');
+                        if (menu) menu.classList.remove('menu-active');
+                        if (toggleBtn) toggleBtn.setAttribute('aria-expanded', 'false');
+                        if (arrow) arrow.classList.remove('rotate-180');
+                    } else {
+                        // Graceful delay before closing on mouseleave (300ms)
+                        closeTimer = setTimeout(() => {
+                            item.classList.remove('is-open');
+                            if (menu) menu.classList.remove('menu-active');
+                            if (toggleBtn) toggleBtn.setAttribute('aria-expanded', 'false');
+                            if (arrow) arrow.classList.remove('rotate-180');
+                        }, 300);
+                    }
+                }
+
+                item.addEventListener('mouseenter', () => openMenu());
+                item.addEventListener('mouseleave', () => closeMenu(false));
+
+                if (toggleBtn) {
+                    toggleBtn.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        if (item.classList.contains('is-open') && menu && menu.classList.contains('menu-active')) {
+                            closeMenu(true);
+                        } else {
+                            openMenu();
+                        }
+                    });
+                }
+
+                if (menu) {
+                    menu.querySelectorAll('a').forEach(link => {
+                        link.addEventListener('click', () => closeMenu(true));
+                    });
+                }
+            });
+
+            document.addEventListener('click', (e) => {
+                if (!e.target.closest('.nav-dropdown-item')) {
+                    dropdownItems.forEach(item => {
+                        item.classList.remove('is-open');
+                        const menu = item.querySelector('.nav-dropdown-menu');
+                        const btn = item.querySelector('.nav-dropdown-toggle');
+                        const arrow = item.querySelector('.dropdown-arrow');
+                        if (menu) menu.classList.remove('menu-active');
+                        if (btn) btn.setAttribute('aria-expanded', 'false');
+                        if (arrow) arrow.classList.remove('rotate-180');
+                    });
+                }
+            });
+        });
     </script>
+
+    <style>
+        .nav-dropdown-menu.menu-active {
+            opacity: 1 !important;
+            transform: translateY(0) !important;
+            pointer-events: auto !important;
+        }
+        .nav-dropdown-item.is-open .dropdown-arrow {
+            transform: rotate(180deg);
+            color: #026fc7;
+        }
+    </style>
 
     @stack('scripts')
 </body>

@@ -34,6 +34,12 @@
     .hero-glow {
         background: radial-gradient(circle at 50% 30%, rgba(14, 140, 233, 0.15) 0%, rgba(245, 158, 11, 0.08) 50%, transparent 75%);
     }
+
+    .nav-dropdown-menu.menu-active {
+        opacity: 1 !important;
+        transform: translateY(0) !important;
+        pointer-events: auto !important;
+    }
 }
 
 /* Smooth transition defaults */
